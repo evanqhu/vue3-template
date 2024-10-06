@@ -11,7 +11,12 @@ module.exports = {
     '@vue/eslint-config-typescript',
     '@vue/eslint-config-prettier'
   ],
+  plugins: ['simple-import-sort'],
   parserOptions: {
     ecmaVersion: 'latest'
+  },
+  rules: {
+    'simple-import-sort/imports': 'warn',
+    'simple-import-sort/exports': 'warn'
   }
 }
