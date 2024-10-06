@@ -1,0 +1,14 @@
+{
+  // 不包含任何文件，作为项目的根配置
+  "files": [],
+
+  // 参考其他 tsconfig 配置
+  "references": [
+    {
+      "path": "./tsconfig.node.json" // 引用 Node.js 的配置
+    },
+    {
+      "path": "./tsconfig.app.json" // 引用 Vue 应用的配置
+    }
+  ]
+}
