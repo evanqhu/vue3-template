@@ -1,0 +1,58 @@
+// 主样式文件
+@import "./reset.scss";
+@import "./fonts.scss";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  font-weight: normal;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Fira Sans",
+    "Droid Sans",
+    "Helvetica Neue",
+    sans-serif;
+  text-rendering: optimizeLegibility;
+  /* 文本渲染优化 */
+  -webkit-font-smoothing: antialiased;
+  /* Webkit 字体平滑 */
+  -moz-osx-font-smoothing: grayscale;
+  /* macOS 字体平滑 */
+  font-synthesis: none;
+  /* 禁止字体合成 */
+}
+
+/* 清除 input 框自动填充的背景颜色 */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px transparent inset;
+  -webkit-transition:
+    background-color 0s ease-in-out 9999s,
+    color 0s ease-in-out 9999s;
+  -webkit-transition-delay: 9999s;
+  /* 设置一个很长的过渡延迟 */
+  -webkit-text-fill-color: inherit;
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+}
