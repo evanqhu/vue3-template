@@ -12,9 +12,9 @@
 - 使用 sass 样式预处理器
 - 使用 commitlint 规范提交，使用 cz-git 实现交互式提交
 - 封装 SvgIcon 组件（vite-plugin-svg-icons）
+- 封装 axios
 
 待处理
 
-- [ ] stylelint样式校验
-- [ ] 封装 axios
+- [ ] stylelint 样式校验
 - [ ] 完善路由配置和导航守卫
