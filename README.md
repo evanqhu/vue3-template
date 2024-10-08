@@ -10,10 +10,11 @@
 - 使用 Prettier 进行代码格式化
 - 使用 postcss 的 autoprefixer 插件自动添加浏览器前缀
 - 使用 sass 样式预处理器
+- 使用 commitlint 规范提交，使用 cz-git 实现交互式提交
+- 封装 SvgIcon 组件（vite-plugin-svg-icons）
 
 待处理
 
-- [ ] commitlint 提交规范
 - [ ] stylelint样式校验
 - [ ] 封装 axios
-- [ ] 重新整理样式文件
+- [ ] 完善路由配置和导航守卫

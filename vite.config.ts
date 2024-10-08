@@ -60,7 +60,8 @@ export default defineConfig(({ mode }) => {
       open: true,
       proxy: {
         "/api": {
-          target: "https://测试接口.com",
+          // target: "https://service-exndqyuk-1257786608.gz.apigw.tencentcs.com",
+          target: "http://localhost:9999",
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, "")
         }
