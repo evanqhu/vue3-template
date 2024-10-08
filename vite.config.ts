@@ -3,9 +3,7 @@ import { fileURLToPath, URL } from "node:url"
 import vue from "@vitejs/plugin-vue"
 import vueJsx from "@vitejs/plugin-vue-jsx"
 import autoprefixer from "autoprefixer"
-import path from "path"
 import { defineConfig, loadEnv } from "vite"
-import { createSvgIconsPlugin } from "vite-plugin-svg-icons"
 
 // @see: https://cn.vitejs.dev/config
 export default defineConfig(({ mode }) => {
@@ -34,14 +32,7 @@ export default defineConfig(({ mode }) => {
       }
     },
     // 插件
-    plugins: [
-      vue(),
-      vueJsx(),
-      createSvgIconsPlugin({
-        iconDirs: [path.resolve(process.cwd(), "src/icons/svg")],
-        symbolId: "icon-[dir]-[name]"
-      })
-    ],
+    plugins: [vue(), vueJsx()],
     // 混淆器
     esbuild:
       mode === "development"
