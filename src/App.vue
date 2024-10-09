@@ -55,7 +55,7 @@ const slides = [
 
 <template>
   <div>hello</div>
-  <Carousel3D display="5" startIndex="4">
+  <Carousel3D display="5" startIndex="4" :width="150" :height="200" :perspective="0">
     <CarouselSlide
       v-for="(slide, i) in slides"
       :index="i"
@@ -71,4 +71,11 @@ const slides = [
   </Carousel3D>
 </template>
 
-<style scoped></style>
+<style scoped>
+.carousel-3d-container {
+  height: 220px !important;
+}
+.current {
+  box-shadow: 0px 0px 20px 5px #ffdf5e;
+}
+</style>
