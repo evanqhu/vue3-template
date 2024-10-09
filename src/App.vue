@@ -1,7 +1,74 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const slides = [
+  {
+    title: "Slide 1",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, maxime.",
+    src: "https://placehold.it/360x270"
+  },
+  {
+    title: "Slide 2",
+    desc: "Lorem ipsum dolor sit amet ",
+    src: "https://placehold.it/360x270"
+  },
+  {
+    title: "Slide 3",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. ",
+    src: "https://placehold.it/360x270"
+  },
+  {
+    title: "Slide 4",
+    desc: "Lorem ipsum dolor sit amet,  Enim, maxime.",
+    src: "https://placehold.it/360x270"
+  },
+  {
+    title: "Slide 5",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, maxime.",
+    src: "https://placehold.it/360x270"
+  },
+  {
+    title: "Slide 6",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, maxime.",
+    src: "https://placehold.it/360x270"
+  },
+  {
+    title: "Slide 7",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, maxime.",
+    src: "https://placehold.it/360x270"
+  },
+  {
+    title: "Slide 8",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, maxime.",
+    src: "https://placehold.it/360x270"
+  },
+  {
+    title: "Slide 9",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, maxime.",
+    src: "https://placehold.it/360x270"
+  },
+  {
+    title: "Slide 10",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, maxime.",
+    src: "https://placehold.it/360x270"
+  }
+]
+</script>
 
 <template>
   <div>hello</div>
+  <Carousel3D display="5" startIndex="4">
+    <CarouselSlide
+      v-for="(slide, i) in slides"
+      :index="i"
+      :key="i"
+      #default="{ index, isCurrent, leftIndex, rightIndex }"
+    >
+      <h1>{{ slide.title }}</h1>
+      <p>{{ index }}</p>
+      <p>{{ isCurrent }}</p>
+      <p>{{ leftIndex }}</p>
+      <p>{{ rightIndex }}</p>
+    </CarouselSlide>
+  </Carousel3D>
 </template>
 
 <style scoped></style>
