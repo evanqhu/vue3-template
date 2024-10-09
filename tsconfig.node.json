@@ -14,19 +14,14 @@
   "compilerOptions": {
     // 启用项目的增量编译
     "composite": true,
-
     // 不生成输出文件
     "noEmit": true,
-
     // 指定 TypeScript 构建信息文件的路径
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
-
     // 使用 ESNext 模块格式
     "module": "ESNext",
-
     // 模块解析策略
     "moduleResolution": "Bundler",
-
     // 包含 Node.js 类型声明
     "types": ["node"]
   }
