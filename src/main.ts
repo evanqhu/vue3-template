@@ -1,6 +1,7 @@
 // 通用代码，在服务器和客户端之间共享
 import { createHead } from "@unhead/vue"
 import { createSSRApp } from "vue"
+import VueLazyLoad from "vue3-lazyload"
 
 import App from "@/App.vue"
 import { loadSvg } from "@/icons"
@@ -24,6 +25,9 @@ export function createApp(type: "client" | "server") {
   // 集成 unhead
   const head = createHead()
   app.use(head)
+
+  // 集成 VueLazyLoad
+  app.use(VueLazyLoad, {})
 
   // 全局注册组件 SvgIcon
   loadSvg(app)

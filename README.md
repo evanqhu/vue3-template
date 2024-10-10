@@ -21,7 +21,8 @@
 
 ## vue3-ssr 分支
 
-- 安装 Unhead
-- 安装 Vue-LazyLoad
+- 使用 Unhead 处理 title 和 meta
+- 使用 vue3-lazyload 图片懒加载插件
+
 - 安装 firebase
-- 移动端和PC 端适配
+- 移动端和 PC 端适配
