@@ -6,7 +6,7 @@ import request from "@/api/service"
 /** 查询合同列表 */
 /** 案例 1️⃣ (不使用 try catch) */
 export const getContractList = async (_params: List.ContractListReq) => {
-  const result = await request.get<List.ContractListRes>("/api", {
+  const result = await request.get<List.ContractListRes>("/get", {
     cancelRequest: false
   })
   const { data } = result
@@ -14,7 +14,7 @@ export const getContractList = async (_params: List.ContractListReq) => {
 }
 
 export const getContractList2 = async (_params: List.ContractListReq) => {
-  const result = await request.post<List.ContractListRes>("/api", _params, {
+  const result = await request.post<List.ContractListRes>("/post", _params, {
     cancelRequest: false
   })
   const { data } = result

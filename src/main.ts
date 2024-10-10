@@ -1,23 +1,27 @@
-// import '@/styles/main.css'
-import "@/styles/main.scss"
-import "@/router/permission" // 路由守卫（在 app.use(router) 之前执行）
-
-import { createApp } from "vue"
+// 通用代码，在服务器和客户端之间共享
+import { createSSRApp } from "vue"
 
 import App from "@/App.vue"
 import { loadSvg } from "@/icons"
-import router from "@/router"
-import store from "@/store"
+import { createRouter } from "@/router"
+import { createStore } from "@/store"
 
-const app = createApp(App)
+// SSR 每个请求都需要一个新的应用实例，因此我们导出一个函数来创建一个新的应用实例
+// 如果使用状态管理器，我们也会在这里创建一个新的存储（store）
+// 每次请求时调用
+export function createApp(type: "client" | "server") {
+  const app = createSSRApp(App)
 
-// 全局注册组件 SvgIcon
-loadSvg(app)
+  // 集成 Pinia 状态管理器
+  const store = createStore()
+  app.use(store)
 
-app.use(store)
-app.use(router)
+  // 集成 Vue Router
+  const router = createRouter(type)
+  app.use(router)
 
-/** 等待路由器准备完毕，挂载应用 */
-router.isReady().then(() => {
-  app.mount("#app")
-})
+  // 全局注册组件 SvgIcon
+  loadSvg(app)
+
+  return { app, store, router }
+}
