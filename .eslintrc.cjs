@@ -25,5 +25,6 @@ module.exports = {
         argsIgnorePattern: "^_" // 忽略函数参数名以 _ 开头
       }
     ]
-  }
+  },
+  ignorePatterns: ["dist/"]
 }

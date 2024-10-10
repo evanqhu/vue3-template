@@ -1,4 +1,5 @@
 // 通用代码，在服务器和客户端之间共享
+import { createHead } from "@unhead/vue"
 import { createSSRApp } from "vue"
 
 import App from "@/App.vue"
@@ -20,8 +21,12 @@ export function createApp(type: "client" | "server") {
   const router = createRouter(type)
   app.use(router)
 
+  // 集成 unhead
+  const head = createHead()
+  app.use(head)
+
   // 全局注册组件 SvgIcon
   loadSvg(app)
 
-  return { app, store, router }
+  return { app, store, router, head }
 }

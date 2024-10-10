@@ -56,10 +56,11 @@ app.use("*", async (req, res) => {
       render = (await import("./dist/server/entry-server.js")).render // 从已构建的服务器端模块中导入 render 函数
     }
 
-    const { stream, state } = await render(url, ssrManifest) // 调用 render 函数，生成流式内容和 Pinia 状态
+    const { stream, state, headPayload } = await render(url, ssrManifest) // 调用 render 函数，生成流式内容和 Pinia 状态
 
     const [htmlStart, htmlEnd] = template
       .replace("<!--pinia-state-->", state)
+      .replace("<!--headTags-->", headPayload.headTags)
       .split("<!--app-html-->") // 将模板分割为头部和尾部
 
     res.status(200).set({ "Content-Type": "text/html" }) // 设置响应头，表示返回 HTML 内容

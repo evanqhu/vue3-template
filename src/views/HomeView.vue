@@ -1,7 +1,18 @@
 <script setup lang="ts">
+import { useHead } from "@unhead/vue"
 import { onMounted } from "vue"
 
 import { getContractList } from "@/api/modules/list"
+
+useHead({
+  title: "Home Page",
+  meta: [
+    {
+      name: "description",
+      content: "My home page description"
+    }
+  ]
+})
 
 onMounted(async () => {
   const result = await getContractList({

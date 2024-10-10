@@ -21,7 +21,7 @@
 
 ## vue3-ssr 分支
 
-### 项目介绍
-
-1. 开发项目
-   pn dev
+- 安装 Unhead
+- 安装 Vue-LazyLoad
+- 安装 firebase
+- 移动端和PC 端适配
