@@ -46,6 +46,7 @@ export function createApp(type: "client" | "server") {
   loadSvg(app)
 
   // Firebase 相关
+  // TODO 改成 provide inject
   app.config.globalProperties.$logEvent = (event, params = {}) => {
     console.log(`Queued log: ${event}`, params)
     eventQueue.push({ type: "log", event, params })

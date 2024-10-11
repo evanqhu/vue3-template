@@ -38,6 +38,13 @@ if (!isProduction) {
   app.use(base, sirv("./dist/client", { extensions: [] })) // 提供静态资源服务，服务路径为 './dist/client'
 }
 
+// 处理 ads.txt 请求
+app.get("/ads.txt", async (req, res) => {
+  const content = (await vite.ssrLoadModule("/src/config/adSense.ts")).adSenseConfig.ads
+  console.log("🚀🚀🚀  ads content: ", content)
+  res.type("text/plain").send(content)
+})
+
 // 处理所有的 HTML 请求
 app.use("*", async (req, res) => {
   try {
