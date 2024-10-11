@@ -1,4 +1,4 @@
 // 全局变量和函数，通过 Vite 插件可以将其注入到全局
 @function half($number) {
-  @return #{$number / 2}px; // 返回数字的一半，单位为 px
+  @return #{calc($number / 2)}px; // 返回数字的一半，单位为 px
 }
