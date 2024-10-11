@@ -23,6 +23,10 @@
 
 - 使用 Unhead 处理 title 和 meta
 - 使用 vue3-lazyload 图片懒加载插件
+- 使用 useDevice 判断设备类型，设备类型存储在 store 中
 
-- 安装 firebase
-- 移动端和 PC 端适配
+待处理
+
+- [ ] 安装 firebase
+- [ ] 移动端和 PC 端适配
+- [ ] adscomponents

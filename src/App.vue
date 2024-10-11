@@ -2,6 +2,14 @@
 import { RouterLink, RouterView } from "vue-router"
 
 import HelloWorld from "@/components/HelloWorld.vue"
+
+import { useDevice } from "./hooks/useDevice"
+import { useResize } from "./hooks/useResize"
+
+useResize()
+
+const { isMobile } = useDevice()
+console.log("🚀🚀🚀  isMobile: ", isMobile.value)
 </script>
 
 <template>

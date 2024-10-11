@@ -56,7 +56,8 @@ app.use("*", async (req, res) => {
       render = (await import("./dist/server/entry-server.js")).render // 从已构建的服务器端模块中导入 render 函数
     }
 
-    const { stream, state, headPayload } = await render(url, ssrManifest) // 调用 render 函数，生成流式内容和 Pinia 状态
+    // 调用服务端的 render 函数，生成流式内容和 Pinia 状态
+    const { stream, state, headPayload } = await render(url, ssrManifest, req)
 
     const [htmlStart, htmlEnd] = template
       .replace("<!--pinia-state-->", state)

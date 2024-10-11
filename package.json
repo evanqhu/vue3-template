@@ -18,6 +18,7 @@
     "commit": "bash pull-commit-push.sh"
   },
   "dependencies": {
+    "@types/express": "^5.0.0",
     "@unhead/ssr": "^1.11.7",
     "@unhead/vue": "^1.11.7",
     "axios": "^1.7.7",
