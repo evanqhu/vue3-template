@@ -30,6 +30,7 @@
 - [ ] 安装 firebase(暂不清楚 firebase 的使用)
 - [ ] adscomponents
 - [ ] Winston 日志记录
+- [ ] adsense
 
 ### 移动端和 PC 端适配
 
@@ -41,3 +42,7 @@
 使用媒体查询写样式，max-width: 768px 是移动端，大于 768px 是 PC 端
 PC 端像素单位使用绝对单位 px
 移动端像素单位使用函数 half 处理，将设计的像素单位除以 2，例如 half(100) = 50px
+
+### 环境变量
+
+修改 .env 文件中的 VITE_PUBLIC_PATH 为当前项目的地址

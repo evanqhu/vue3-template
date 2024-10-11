@@ -57,7 +57,7 @@ export function createApp(type: "client" | "server") {
   }
 
   if (typeof window !== "undefined") {
-    setupAnalytics(app, eventQueue)
+    // setupAnalytics(app, eventQueue)
   } else {
     // 服务器端只定义简单的 log
     app.config.globalProperties.$logEvent = (event, params = {}) => {

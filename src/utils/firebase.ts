@@ -1,3 +1,4 @@
+// Firebase 服务
 import { getAnalytics, isSupported, logEvent } from "firebase/analytics"
 import { initializeApp } from "firebase/app"
 import type { App } from "vue"
