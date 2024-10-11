@@ -7,6 +7,10 @@ import App from "@/App.vue"
 import { loadSvg } from "@/icons"
 import { createRouter } from "@/router"
 import { createStore } from "@/store"
+import { setupAnalytics } from "@/utils/firebase"
+
+/** 事件队列，用于在 Analytics 初始化之前暂存事件 */
+const eventQueue: any[] = []
 
 // SSR 每个请求都需要一个新的应用实例，因此我们导出一个函数来创建一个新的应用实例
 // 如果使用状态管理器，我们也会在这里创建一个新的存储（store）
@@ -24,6 +28,15 @@ export function createApp(type: "client" | "server") {
 
   // 集成 unhead
   const head = createHead()
+  // NOTE 可在此处注入元信息
+  // head.push({
+  //   meta: [
+  //     {
+  //       name: "description",
+  //       content: "This is a description"
+  //     }
+  //   ]
+  // })
   app.use(head)
 
   // 集成 VueLazyLoad
@@ -31,6 +44,29 @@ export function createApp(type: "client" | "server") {
 
   // 全局注册组件 SvgIcon
   loadSvg(app)
+
+  // Firebase 相关
+  app.config.globalProperties.$logEvent = (event, params = {}) => {
+    console.log(`Queued log: ${event}`, params)
+    eventQueue.push({ type: "log", event, params })
+  }
+
+  app.config.globalProperties.$eventrack = (msg, method, map = {}) => {
+    console.log(`Queued track: ${msg}`, method, map)
+    eventQueue.push({ type: "track", msg, method, map })
+  }
+
+  if (typeof window !== "undefined") {
+    setupAnalytics(app, eventQueue)
+  } else {
+    // 服务器端只定义简单的 log
+    app.config.globalProperties.$logEvent = (event, params = {}) => {
+      console.log(`Server Log: ${event}`, params)
+    }
+    app.config.globalProperties.$eventrack = (event, params = {}) => {
+      console.log(`Server Log: ${event}`, params)
+    }
+  }
 
   return { app, store, router, head }
 }

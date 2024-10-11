@@ -27,8 +27,9 @@
 
 待处理
 
-- [ ] 安装 firebase
+- [ ] 安装 firebase(暂不清楚 firebase 的使用)
 - [ ] adscomponents
+- [ ] Winston 日志记录
 
 ### 移动端和 PC 端适配
 
