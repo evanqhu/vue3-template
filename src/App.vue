@@ -23,11 +23,12 @@ console.log("🚀🚀🚀  isMobile: ", isMobile.value)
       </nav>
     </div>
   </header>
+  <div class="demo"></div>
 
   <RouterView />
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 header {
   line-height: 1.5;
   max-height: 100vh;
@@ -39,5 +40,11 @@ nav {
   gap: 1rem;
   text-align: center;
   margin: 2rem;
+}
+
+.demo {
+  width: half(200);
+  height: 100px;
+  background-color: aquamarine;
 }
 </style>

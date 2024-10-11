@@ -29,6 +29,7 @@ export default defineConfig(({ mode }) => {
       },
       preprocessorOptions: {
         scss: {
+          additionalData: `@import "@/styles/variables.scss";`, // 全局注入样式文件，包含全局样式变量和函数
           api: "modern-compiler" // 关闭控制台【Deprecation [legacy-js-api]: The legacy JS API is deprecated and will be removed in Dart Sass 2.0.0.】警告
         }
       }
