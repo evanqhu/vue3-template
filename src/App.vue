@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia"
-import { ref } from "vue"
+import { computed, ref } from "vue"
 import { RouterLink, RouterView } from "vue-router"
 
 import HelloWorld from "@/components/HelloWorld.vue"
@@ -19,10 +19,11 @@ const { isMobile } = useDevice()
 console.log("🚀🚀🚀  isMobile: ", isMobile.value)
 
 /** 广告组件引用 */
-const adsRefs = ref({
-  ad1: null
-})
+const ad1 = ref(null)
+const ad2 = ref(null)
+const adsRefs = computed(() => [ad1, ad2])
 
+/** 加载广告 hook */
 useAdSense(adsRefs)
 </script>
 
@@ -38,9 +39,11 @@ useAdSense(adsRefs)
     </div>
   </header>
   <div class="demo"></div>
-  <AdSense :ref="(el) => (adsRefs.ad1 = el)" :adsAttrs="adSense.home_1" />
+  <AdSense ref="ad1" :adsAttrs="adSense.home_1" />
+  <AdSense ref="ad2" :adsAttrs="adSense.home_2" />
 
   <RouterView />
+  <SvgIcon name="fullscreen" width="20px" height="20px" />
 </template>
 
 <style lang="scss" scoped>

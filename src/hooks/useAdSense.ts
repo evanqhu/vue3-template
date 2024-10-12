@@ -23,7 +23,6 @@ export const useAdSense = (adsRefs: any) => {
     // 如果不存在广告脚本 URL，则不加载
     if (!adSense.value?.scriptUrl) {
       console.log("🚀🚀🚀 广告脚本的 URL 不存在，终止加载广告外链")
-      // TODO
       // this.$eventrack("no_adscript_config", "expose")
       return
     }
@@ -53,25 +52,20 @@ export const useAdSense = (adsRefs: any) => {
     setTimeout(() => displayAd(), 500)
   }
 
-  // TODO
-  /** 展示广告 */
+  /** 加载广告 */
   const displayAd = async () => {
     await nextTick() // 等待 DOM 更新完成
-
-    // 所有 ads 元素的 refs
-    console.log("🚀🚀🚀 所有广告组件的引用对象 adsRefs: ", adsRefs.value)
-    const adsElements = Object.entries(adsRefs.value).flatMap(([, ref]) => ref) // 展开并获取所有元素
-    console.log("🚀🚀🚀 所有广告组件数组 adsElements: ", adsElements)
-
+    const adsElements = adsRefs.value // 获取所有元素数组
     if (!window.adsbygoogle || !window.adsbygoogle.loaded) {
       console.log("Adsense script not loaded yet, delaying ad display.")
       setTimeout(displayAd, 500) // 延迟再次尝试
       return
     }
 
-    adsElements.forEach((ad, index) => {
-      console.log("ready to push ads", index + 1)
-      window.adsbygoogle.push({})
+    // 遍历所有广告元素并加载广告
+    adsElements.forEach((element: any, index) => {
+      console.log(`🚀🚀🚀 ready to push ad${index + 1}`, element.value.adsAttrs)
+      ;(window.adsbygoogle = window.adsbygoogle || []).push({}) // 加载广告
     })
   }
 
