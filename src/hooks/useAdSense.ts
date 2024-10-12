@@ -8,7 +8,8 @@ export const useAdSense = (adsRefs: any) => {
   const appStore = useAppStore()
   const { adSense } = storeToRefs(appStore)
 
-  const loadAdSenseScript = async () => {
+  /** 加载脚本 URL */
+  const loadAdSenseScript = () => {
     // 检查广告脚本是否加载
     if (window.adsbygoogle && window.adsbygoogle.loaded) {
       console.log("Adsense script already loaded.")
@@ -18,10 +19,6 @@ export const useAdSense = (adsRefs: any) => {
       return
     }
 
-    await loadScriptConditionally()
-  }
-
-  const loadScriptConditionally = () => {
     console.log("🚀🚀🚀 adsensConfig: ", adSense.value)
     // 如果不存在广告脚本 URL，则不加载
     if (!adSense.value?.scriptUrl) {
@@ -48,7 +45,7 @@ export const useAdSense = (adsRefs: any) => {
     // this.$eventrack("adscript_add_success", "expose")
     console.log("🚀🚀🚀 脚本插入完成，加载完成，执行加载插入广告及监听操作")
     script.onerror = () => console.error("🚀🚀🚀 广告脚本加载失败")
-    script.onload = loadAdWithDelay // 使用 bind 确保 this 指向正确
+    script.onload = loadAdWithDelay
   }
 
   /** 延迟加载广告 */
@@ -78,13 +75,13 @@ export const useAdSense = (adsRefs: any) => {
     })
   }
 
-  onMounted(async () => {
+  onMounted(() => {
     console.log("🚀🚀🚀 onMounted")
-    await loadAdSenseScript()
+    loadAdSenseScript()
   })
 
-  onActivated(async () => {
+  onActivated(() => {
     console.log("🚀🚀🚀 onActivated")
-    await loadAdSenseScript()
+    loadAdSenseScript()
   })
 }
