@@ -13,6 +13,8 @@ import { setupAnalytics } from "@/utils/firebase"
 /** 事件队列，用于在 Analytics 初始化之前暂存事件 */
 const eventQueue: any[] = []
 
+const appTitle = import.meta.env.VITE_APP_TITLE
+
 // SSR 每个请求都需要一个新的应用实例，因此我们导出一个函数来创建一个新的应用实例
 // 如果使用状态管理器，我们也会在这里创建一个新的存储（store）
 // 每次请求时调用
@@ -30,14 +32,14 @@ export function createApp(type: "client" | "server") {
   // 集成 unhead
   const head = createHead()
   // NOTE 可在此处注入元信息
-  // head.push({
-  //   meta: [
-  //     {
-  //       name: "description",
-  //       content: "This is a description"
-  //     }
-  //   ]
-  // })
+  head.push({
+    meta: [
+      {
+        name: "og:title",
+        content: appTitle
+      }
+    ]
+  })
   app.use(head)
 
   // 集成 VueLazyLoad

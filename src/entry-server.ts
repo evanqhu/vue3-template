@@ -22,19 +22,12 @@ export async function render(url: string, _ssrManifest: string, req: Request) {
   // 将状态序列化为 JSON 字符串
   const state = JSON.stringify(store.state.value)
 
-  // 设置 head
-  head.push({
-    meta: [
-      {
-        name: "description",
-        content: "My App Description"
-      }
-    ]
-  })
-  const headPayload = await renderSSRHead(head)
-
   await router.push(url)
   await router.isReady()
+
+  // const demo = await head.resolveTags()
+  // console.log("🚀🚀🚀  demo: ", demo)
+  const headPayload = await renderSSRHead(head)
 
   const ctx = {}
   const stream = renderToWebStream(app, ctx)

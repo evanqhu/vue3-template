@@ -40,7 +40,7 @@ const config = {
   // 设置超时时间
   timeout: RequestEnum.TIMEOUT,
   // 跨域时候允许携带凭证
-  withCredentials: true
+  withCredentials: false
 }
 
 /* 用于创建 axios 实例的类 */

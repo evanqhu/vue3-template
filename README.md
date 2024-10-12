@@ -32,6 +32,7 @@
 - [ ] Winston 日志记录
 - [ ] adsense
 - [ ] Vite 图片压缩插件
+- [ ] 组件中使用 useHead，meta 信息在服务端没有被加载
 
 ### 移动端和 PC 端适配
 

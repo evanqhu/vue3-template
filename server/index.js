@@ -60,7 +60,7 @@ app.use("*", async (req, res) => {
     } else {
       // 在生产环境下，使用缓存的模板和 render 函数
       template = templateHtml // 使用缓存的生产环境模板
-      render = (await import("./dist/server/entry-server.js")).render // 从已构建的服务器端模块中导入 render 函数
+      render = (await import("../dist/server/entry-server.js")).render // 从已构建的服务器端模块中导入 render 函数
     }
 
     // 调用服务端的 render 函数，生成流式内容和 Pinia 状态
