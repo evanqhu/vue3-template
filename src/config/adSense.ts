@@ -12,13 +12,5 @@ export const adSenseConfig = {
     "data-ad-slot": "9894162380",
     "data-ad-format": "auto",
     "data-full-width-responsive": "true"
-  },
-  home_2: {
-    class: "adsbygoogle",
-    style: "display:block",
-    "data-ad-client": "ca-pub-3125188477567991",
-    "data-ad-slot": "5264081413",
-    "data-ad-format": "auto",
-    "data-full-width-responsive": "true"
   }
 }

@@ -4,6 +4,7 @@ import { createSSRApp } from "vue"
 import VueLazyLoad from "vue3-lazyload"
 
 import App from "@/App.vue"
+import AdSense from "@/components/AdSense/index.vue"
 import { loadSvg } from "@/icons"
 import { createRouter } from "@/router"
 import { createStore } from "@/store"
@@ -44,6 +45,9 @@ export function createApp(type: "client" | "server") {
 
   // 全局注册组件 SvgIcon
   loadSvg(app)
+
+  // 全局注册组件 AdSense
+  app.component("AdSense", AdSense)
 
   // Firebase 相关
   // TODO 改成 provide inject

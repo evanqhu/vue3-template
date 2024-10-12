@@ -31,6 +31,7 @@
 - [ ] adscomponents
 - [ ] Winston 日志记录
 - [ ] adsense
+- [ ] Vite 图片压缩插件
 
 ### 移动端和 PC 端适配
 

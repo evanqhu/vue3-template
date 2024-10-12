@@ -75,7 +75,6 @@ class RequestFactory {
       (response: AxiosResponse<ResponseData<any>>): any => {
         if (response.status === 200) {
           const { data, config } = response
-          console.log("🚀🚀🚀  config: ", config)
           // 请求结束成功后，移除本次请求
           AxiosCanceler.removePending(config)
 

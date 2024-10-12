@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "node server",
     "build": "run-p type-check \"build:client {@}\" \"build:server {@}\" --",
+    "build:dev": "run-s \"build --mode development\"",
     "build:stage": "run-s \"build --mode staging\"",
     "build:client": "vite build --ssrManifest --outDir dist/client",
     "build:server": "vite build --ssr src/entry-server.ts --outDir dist/server",
