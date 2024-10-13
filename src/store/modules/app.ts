@@ -11,10 +11,18 @@ export const useAppStore = defineStore("app", () => {
   /** adSenseConfig */
   const adSense = ref(adSenseConfig)
 
+  /** 调试广告模式 */
+  const showDebug = ref(false)
+
   /** 切换设备类型 */
   const toggleDevice = (type: DeviceEnum) => {
     device.value = type
   }
 
-  return { device, adSense, toggleDevice }
+  /** 切换 debug 模式 */
+  const toggleDebug = (type: boolean) => {
+    showDebug.value = type
+  }
+
+  return { device, adSense, showDebug, toggleDevice, toggleDebug }
 })

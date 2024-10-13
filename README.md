@@ -48,3 +48,15 @@ PC 端像素单位使用绝对单位 px
 ### 环境变量
 
 修改 .env 文件中的 VITE_PUBLIC_PATH 为当前项目的地址
+
+### 运行项目
+
+- Node 版本：v18+
+
+- 安装依赖
+
+```bash
+pnpm install
+```
+
+-
