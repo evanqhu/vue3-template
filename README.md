@@ -28,11 +28,8 @@
 待处理
 
 - [ ] 安装 firebase(暂不清楚 firebase 的使用)
-- [ ] adscomponents
 - [ ] Winston 日志记录
-- [ ] adsense
 - [ ] Vite 图片压缩插件
-- [ ] 组件中使用 useHead，meta 信息在服务端没有被加载
 
 ### ⚙️ 运行项目
 

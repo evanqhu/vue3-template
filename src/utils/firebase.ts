@@ -3,14 +3,17 @@ import { getAnalytics, isSupported, logEvent } from "firebase/analytics"
 import { initializeApp } from "firebase/app"
 import type { App } from "vue"
 
+import { $eventTrack, $logEvent } from "@/config/constants"
+
+/** Firebase 配置 */
 const firebaseConfig = {
-  apiKey: "your-api-key",
-  authDomain: "your-auth-domain",
-  projectId: "your-project-id",
-  storageBucket: "your-storage-bucket",
-  messagingSenderId: "your-messaging-sender-id",
-  appId: "your-app-id",
-  measurementId: "your-measurement-id" // 这个 ID 是启用 Google Analytics 后生成的
+  apiKey: "AIzaSyBcS3cwlUXpK99s0FiNLcdhiTqTbqa8pRo",
+  authDomain: "webs-58a8d.firebaseapp.com",
+  projectId: "webs-58a8d",
+  storageBucket: "webs-58a8d.appspot.com",
+  messagingSenderId: "730684174767",
+  appId: "1:730684174767:web:c2116944c8d15fb40c3f5a",
+  measurementId: "G-TYZVCBGETW"
 }
 
 /** 初始化 Firebase */
@@ -23,41 +26,40 @@ const initializeFirebase = () => {
 }
 
 /** 设置 Firebase */
-export const setupAnalytics = (app: App, eventQueue: any[]) => {
-  isSupported().then((result) => {
-    if (result) {
-      const analytics = initializeFirebase()
+export const setupAnalytics = async (app: App) => {
+  try {
+    await isSupported()
+    const analytics = initializeFirebase()
+    console.log("🚀🚀🚀  analytics: ", analytics)
 
-      // 记录一个名为 "in_page" 的事件，表示用户进入页面
-      logEvent(analytics, "in_page")
-      console.log("in_page")
+    // 记录一个名为 "in_page" 的事件，表示用户进入页面
+    logEvent(analytics, "in_page")
+    console.log("🚀🚀🚀 firebase analytics: ", "in_page")
 
-      // 覆盖默认的上报方法
-      app.config.globalProperties.$logEvent = (event, params = {}) => {
-        console.log(event)
-        logEvent(analytics, event, params)
-      }
+    // 覆盖默认的上报方法 1
+    app.provide($logEvent, (eventName: string, eventParams = {}) => {
+      logEvent(analytics, eventName, eventParams)
+      console.log("🚀🚀🚀 firebase analytics: ", eventName)
+    })
 
-      app.config.globalProperties.$eventrack = (msg, method, map = {}) => {
-        const params = { time: new Date(), message: msg, method: method, ...map }
-        console.log(msg)
-        logEvent(analytics, msg, params)
+    // 覆盖默认的上报方法 2 (增加了自定义的配置对象)
+    app.provide($eventTrack, (eventName: string, method: string, eventParams = {}) => {
+      const _eventParams = {
+        time: new Date(),
+        message: eventName,
+        method,
+        ...eventParams
       }
-      // 处理队列中的所有请求
-      while (eventQueue.length > 0) {
-        const queuedEvent = eventQueue.shift()
-        if (queuedEvent.type === "log") {
-          app.config.globalProperties.$logEvent(queuedEvent.event, queuedEvent.params)
-        } else if (queuedEvent.type === "track") {
-          app.config.globalProperties.$eventrack(
-            queuedEvent.msg,
-            queuedEvent.method,
-            queuedEvent.map
-          )
-        }
-      }
-    } else {
-      console.log("Firebase Analytics not supported")
-    }
-  })
+      logEvent(analytics, eventName, _eventParams)
+      console.log("🚀🚀🚀 firebase analytics: ", eventName)
+    })
+  } catch (error) {
+    console.log("🚀🚀🚀 Firebase Analytics not supported")
+    app.provide($logEvent, (eventName: string, eventParams = {}) => {
+      console.log(`🚀🚀🚀 Client Log: ${eventName}`, eventParams)
+    })
+    app.provide($eventTrack, (eventName: string, method: string, eventParams = {}) => {
+      console.log(`🚀🚀🚀 Client Log: ${eventName}`, method, eventParams)
+    })
+  }
 }

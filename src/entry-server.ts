@@ -11,7 +11,7 @@ import { DeviceEnum } from "./config/constants"
 import { createApp } from "./main"
 
 export async function render(url: string, _ssrManifest: string, req: Request) {
-  const { app, store, router, head } = createApp("server")
+  const { app, store, router, head } = await createApp("server")
 
   // 根据请求头判断设备类型并存储状态
   const userAgent = req.headers["user-agent"] || "mobile"
@@ -78,7 +78,6 @@ export async function render(url: string, _ssrManifest: string, req: Request) {
 //   } else if (file.endsWith(".png")) {
 //     return ` <link rel="preload" href="${file}" as="image" type="image/png">`
 //   } else {
-//     // TODO
 //     return ""
 //   }
 // }

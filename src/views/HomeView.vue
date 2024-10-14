@@ -1,8 +1,5 @@
 <script setup lang="ts">
 import { useHead } from "@unhead/vue"
-import { onMounted } from "vue"
-
-import { getContractList } from "@/api/modules/list"
 
 useHead({
   title: "Home Page",
@@ -12,14 +9,6 @@ useHead({
       content: "My home page description"
     }
   ]
-})
-
-onMounted(async () => {
-  const result = await getContractList({
-    current: 1,
-    pageSize: 10
-  })
-  console.log("🚀🚀🚀 result: ", result)
 })
 </script>
 
