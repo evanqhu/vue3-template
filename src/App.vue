@@ -5,11 +5,10 @@ import { RouterLink, RouterView } from "vue-router"
 import { useRoute } from "vue-router"
 
 import HelloWorld from "@/components/HelloWorld.vue"
-
-import { useAdSense } from "./hooks/useAdSense"
-import { useDevice } from "./hooks/useDevice"
-import { useResize } from "./hooks/useResize"
-import { useAppStore } from "./store/modules/app"
+import { useAdSense } from "@/hooks/useAdSense"
+import { useDevice } from "@/hooks/useDevice"
+import { useResize } from "@/hooks/useResize"
+import { useAppStore } from "@/store/modules/app"
 
 /** 监视页面大小变化 hook */
 useResize()
@@ -48,6 +47,7 @@ onMounted(() => {
     </div>
   </header>
   <div class="demo"></div>
+  <SvgIcon name="fullscreen" width="20px" height="20px" />
   <AdSense ref="ad1" :adsAttrs="adSense.home_1" :showDebug="showDebug" />
   <AdSense ref="ad2" :adsAttrs="adSense.home_2" :showDebug="showDebug" />
   <RouterView v-slot="{ Component }">
@@ -57,7 +57,6 @@ onMounted(() => {
       </KeepAlive>
     </Transition>
   </RouterView>
-  <SvgIcon name="fullscreen" width="20px" height="20px" />
 </template>
 
 <style lang="scss" scoped>
