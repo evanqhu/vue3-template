@@ -219,12 +219,13 @@ useHead({
 ### ⚙️ Firebase 相关
 
 Firebase 相关代码集成在 `@/utils/firebase.ts` 中
+配置文件在 `@/settings.ts` 下，修改此处的 firebase 内容即可
 
 > 暂未完成
 
 ### ⚙️ AdSense 相关
 
-- AdSense 的配置文件在 `@/config/adSense.ts` 下，修改这里的内容即可
+- AdSense 的配置文件在 `@/settings.ts` 下，修改此处的 adSense 内容即可
 
 - 配置文件中的内容被存储在 pinia 的 appStore 中
 

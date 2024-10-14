@@ -1,15 +1,15 @@
 import { defineStore } from "pinia"
 import { ref } from "vue"
 
-import { adSenseConfig } from "@/config/adSense"
 import { DeviceEnum } from "@/config/constants"
+import { defaultSettings } from "@/settings"
 
 export const useAppStore = defineStore("app", () => {
   /** 设备类型 */
   const device = ref<DeviceEnum>(DeviceEnum.Mobile)
 
   /** adSenseConfig */
-  const adSense = ref(adSenseConfig)
+  const adSense = ref(defaultSettings.adSense)
 
   /** 调试广告模式 */
   const showDebug = ref(false)

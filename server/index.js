@@ -40,7 +40,7 @@ if (!isProduction) {
 
 // 处理 ads.txt 请求
 app.get("/ads.txt", async (req, res) => {
-  const content = (await vite.ssrLoadModule("/src/config/adSense.ts")).adSenseConfig.ads
+  const content = (await vite.ssrLoadModule("/src/settings.ts")).defaultSettings.adSense.ads
   console.log("🚀🚀🚀  ads content: ", content)
   res.type("text/plain").send(content)
 })

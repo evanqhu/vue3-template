@@ -4,17 +4,10 @@ import { initializeApp } from "firebase/app"
 import type { App } from "vue"
 
 import { $eventTrack, $logEvent } from "@/config/constants"
+import { defaultSettings } from "@/settings"
 
 /** Firebase 配置 */
-const firebaseConfig = {
-  apiKey: "AIzaSyBcS3cwlUXpK99s0FiNLcdhiTqTbqa8pRo",
-  authDomain: "webs-58a8d.firebaseapp.com",
-  projectId: "webs-58a8d",
-  storageBucket: "webs-58a8d.appspot.com",
-  messagingSenderId: "730684174767",
-  appId: "1:730684174767:web:c2116944c8d15fb40c3f5a",
-  measurementId: "G-TYZVCBGETW"
-}
+const firebaseConfig = defaultSettings.firebase
 
 /** 初始化 Firebase */
 const initializeFirebase = () => {

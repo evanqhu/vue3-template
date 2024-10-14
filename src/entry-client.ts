@@ -4,13 +4,17 @@ import "@/styles/main.scss"
 
 import { createApp } from "./main"
 
-const { app, store, router } = await createApp("client")
+const initializeApp = async () => {
+  const { app, store, router } = await createApp("client")
 
-// 将服务端渲染的初始状态注入到 store 中
-if (window.__INITIAL_STATE__) {
-  store.state.value = JSON.parse(window.__INITIAL_STATE__)
+  // 将服务端渲染的初始状态注入到 store 中
+  if (window.__INITIAL_STATE__) {
+    store.state.value = JSON.parse(window.__INITIAL_STATE__)
+  }
+
+  router.isReady().then(() => {
+    app.mount("#app", true)
+  })
 }
 
-router.isReady().then(() => {
-  app.mount("#app", true)
-})
+initializeApp()
