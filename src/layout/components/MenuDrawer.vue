@@ -8,6 +8,11 @@ const appStore = useAppStore()
 const { toggleMenuDrawer } = appStore
 
 const router = useRouter()
+
+const handleItemClick = (item: { name: string; path: string }) => {
+  router.push(item.path)
+  toggleMenuDrawer(false)
+}
 </script>
 
 <template>
@@ -22,7 +27,7 @@ const router = useRouter()
         v-for="(item, index) in defaultSettings.resource"
         :key="index"
         class="menu-item"
-        @click="router.push(item.path)"
+        @click="handleItemClick(item)"
       >
         <span>{{ item.name }}</span>
         <SvgIcon name="arrow-right" width="6.5" height="11" />
@@ -81,13 +86,19 @@ const router = useRouter()
 
 @media (min-width: 768px) {
   .drawer-bg {
-    display: none;
+    // display: none;
   }
 
   .menu-drawer {
     width: 360px;
     right: 0;
     box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
+  }
+}
+
+@media (min-width: 1200px) {
+  .menu-drawer {
+    right: calc((100% - 1200px) / 2);
   }
 }
 </style>

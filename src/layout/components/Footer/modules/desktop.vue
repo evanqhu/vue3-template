@@ -33,7 +33,9 @@ const router = useRouter()
         </div>
         <div class="footer-item">
           <p class="item-title">Contact us</p>
-          <p class="item-content">{{ defaultSettings.email }}</p>
+          <a class="item-content" :href="`mailto:${defaultSettings.email}`">
+            {{ defaultSettings.email }}
+          </a>
         </div>
       </div>
     </div>
@@ -71,7 +73,7 @@ const router = useRouter()
   .footer-item {
     display: flex;
     flex-direction: column;
-    padding: 16px 24px;
+    padding: 32px 24px;
 
     .item-title {
       font-weight: 600;

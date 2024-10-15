@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useAppStore } from "@/store/modules/app"
+
 import Footer from "./components/Footer/index.vue"
 import Header from "./components/Header.vue"
 import MenuDrawer from "./components/MenuDrawer.vue"
@@ -6,10 +8,12 @@ import MenuDrawer from "./components/MenuDrawer.vue"
 defineOptions({
   name: "BaseLayout"
 })
+
+const appStore = useAppStore()
 </script>
 
 <template>
-  <div class="app-container">
+  <div class="app-container" :style="{ overflow: appStore.menuDrawerOpened ? 'hidden' : 'auto' }">
     <Header />
     <MenuDrawer />
     <RouterView v-slot="{ Component }">

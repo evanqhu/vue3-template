@@ -16,14 +16,14 @@ export const createRouter = (type: "client" | "server"): Router =>
         component: Layout,
         children: [
           {
-            name: "home",
+            name: "daily",
             path: "",
-            component: () => import("@/views/HomeView.vue")
+            component: () => import("@/views/Home/daily.vue")
           },
           {
-            path: "/about",
-            name: "about",
-            component: () => import("@/views/AboutView.vue")
+            name: "weekly",
+            path: "/weekly-horoscope",
+            component: () => import("@/views/Home/weekly.vue")
           }
         ]
       }

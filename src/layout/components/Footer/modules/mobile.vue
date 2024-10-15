@@ -29,7 +29,9 @@ const router = useRouter()
     </div>
     <div class="footer-item">
       <p class="item-title">Contact us</p>
-      <p class="item-content">{{ defaultSettings.email }}</p>
+      <a class="item-content" :href="`mailto:${defaultSettings.email}`">
+        {{ defaultSettings.email }}
+      </a>
     </div>
     <div class="footer-item copyright">
       <p v-for="(item, index) in defaultSettings.copyright" :key="index" class="item-content">
@@ -60,7 +62,7 @@ const router = useRouter()
 
     .item-title {
       font-weight: 600;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
     }
 
     .item-content {
@@ -75,7 +77,7 @@ const router = useRouter()
         -webkit-tap-highlight-color: transparent;
 
         &:not(:last-of-type) {
-          margin-bottom: 10px;
+          margin-bottom: 20px;
         }
       }
     }
