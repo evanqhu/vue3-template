@@ -1,5 +1,6 @@
 // 入口文件，启动 SSR 服务器
 import fs from "node:fs/promises" // 导入文件系统模块，用于读取文件（使用 Promises）
+import os from "node:os" // 导入操作系统模块，用于获取环境变量
 
 import express from "express" // 导入 Express，用于创建 HTTP 服务器
 
@@ -91,6 +92,20 @@ app.use("*", async (req, res) => {
 })
 
 // 启动 HTTP 服务器并监听指定端口
-app.listen(port, () => {
-  console.log(`Server started at http://localhost:${port}`)
+app.listen(port, "0.0.0.0", () => {
+  // 获取局域网 IP 地址
+  const interfaces = os.networkInterfaces()
+  let localIP = "localhost"
+
+  for (let iface in interfaces) {
+    for (let alias of interfaces[iface]) {
+      if (alias.family === "IPv4" && !alias.internal && alias.address.startsWith("192.168")) {
+        localIP = alias.address // 获取非本地回环地址的 IPv4
+        break
+      }
+    }
+  }
+  console.log(`Server started at:`)
+  console.log(`- Local:   http://localhost:${port}`)
+  console.log(`- Network: http://${localIP}:${port}`) // 打印局域网内可访问的 IP 地址
 })

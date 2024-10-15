@@ -8,6 +8,9 @@ export const useAppStore = defineStore("app", () => {
   /** 设备类型 */
   const device = ref<DeviceEnum>(DeviceEnum.Mobile)
 
+  /** MenuDrawer 状态 */
+  const menuDrawerOpened = ref(false)
+
   /** adSenseConfig */
   const adSense = ref(defaultSettings.adSense)
 
@@ -19,10 +22,23 @@ export const useAppStore = defineStore("app", () => {
     device.value = type
   }
 
+  /** 切换 MenuDrawer 状态 */
+  const toggleMenuDrawer = (type: boolean) => {
+    menuDrawerOpened.value = type
+  }
+
   /** 切换 debug 模式 */
   const toggleDebug = (type: boolean) => {
     showDebug.value = type
   }
 
-  return { device, adSense, showDebug, toggleDevice, toggleDebug }
+  return {
+    device,
+    menuDrawerOpened,
+    adSense,
+    showDebug,
+    toggleDevice,
+    toggleMenuDrawer,
+    toggleDebug
+  }
 })
