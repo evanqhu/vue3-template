@@ -35,6 +35,10 @@ export const defaultSettings = {
     appId: "1:730684174767:web:c2116944c8d15fb40c3f5a",
     measurementId: "G-TYZVCBGETW"
   },
+  /** 关于我们 */
+  aboutUs: "关于我们",
   /** 邮箱 */
-  email: "web@gmail.com"
+  email: "test@gmail.com",
+  /** 版权声明 */
+  copyright: "Copyright. All Rights Reserved."
 }

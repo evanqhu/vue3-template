@@ -25,8 +25,6 @@ export async function render(url: string, _ssrManifest: string, req: Request) {
   await router.push(url)
   await router.isReady()
 
-  // const demo = await head.resolveTags()
-  // console.log("🚀🚀🚀  demo: ", demo)
   const headPayload = await renderSSRHead(head)
 
   const ctx = {}

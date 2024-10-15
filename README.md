@@ -21,15 +21,21 @@
 
 ## vue3-ssr 分支
 
-- 使用 Unhead 处理 title 和 meta
+- 移动端和 PC 端适配
+- 使用 Unhead 处理 title 和 meta（需完善）
+- 安装 Firebase
+- 安装 AdSense 并封装组件
 - 使用 vue3-lazyload 图片懒加载插件
 - 使用 useDevice 判断设备类型，设备类型存储在 store 中
+-
 
 待处理
 
-- [ ] 安装 firebase(暂不清楚 firebase 的使用)
+- [ ] 优化 Firebase
+- [ ] 优化 Adsense
 - [ ] Winston 日志记录
 - [ ] Vite 图片压缩插件
+- [ ] Unhead 服务端渲染 meta
 
 ### ⚙️ 运行项目
 

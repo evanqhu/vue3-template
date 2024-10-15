@@ -23,7 +23,6 @@ export const setupAnalytics = async (app: App) => {
   try {
     await isSupported()
     const analytics = initializeFirebase()
-    console.log("🚀🚀🚀  analytics: ", analytics)
 
     // 记录一个名为 "in_page" 的事件，表示用户进入页面
     logEvent(analytics, "in_page")
