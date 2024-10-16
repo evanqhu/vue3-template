@@ -13,6 +13,9 @@ const generateRoutes = () => {
       return {
         name: routePath, // 路由名
         path: routePath, // 路径
+        meta: {
+          horoscopeName: horoscope.name
+        },
         // component: componentMap[type] // 动态选择组件
         component: () => import(`@/views/Result/${type}.vue`)
       }
