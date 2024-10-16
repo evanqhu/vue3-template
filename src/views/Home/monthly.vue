@@ -26,7 +26,7 @@ useHead({
       <p>Monthly Forecast</p>
       <p>Choose Your Zodiac Sign</p>
     </div>
-    <HoroscopeLayout />
+    <HoroscopeLayout type="monthly" />
     <div class="more-title">More Horoscopes for You</div>
     <HoroscopeMore type="monthly" />
   </div>

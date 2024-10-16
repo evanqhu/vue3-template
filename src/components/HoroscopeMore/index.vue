@@ -2,6 +2,7 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router"
 
+import { typeList } from "@/config/constants"
 import { capitalizeWords } from "@/utils"
 
 defineOptions({
@@ -14,14 +15,16 @@ const props = withDefaults(defineProps<Props>(), {
   type: "daily"
 })
 
-const typeList = ["daily", "weekly", "monthly", "yearly"]
 const filteredTypeList = typeList.filter((item) => item !== props.type)
 
 const router = useRouter()
 
 const handleToMore = (item: string) => {
-  console.log(item)
-  router.push(`/${item}-horoscope`)
+  if (item === "daily") {
+    router.push("/")
+  } else {
+    router.push(`/${item}-horoscope`)
+  }
 }
 </script>
 
@@ -29,7 +32,12 @@ const handleToMore = (item: string) => {
   <div class="horoscope-more">
     <div v-for="item in filteredTypeList" :key="item" class="more-item">
       <p class="item-title">{{ capitalizeWords(item) }} Forecast</p>
-      <img class="item-img" src="@/assets/imgs/img1.jpg" alt="" @click="handleToMore(item)" />
+      <img
+        class="item-img"
+        :src="`src/assets/imgs/${item}-forecast.webp`"
+        alt=""
+        @click="handleToMore(item)"
+      />
     </div>
   </div>
 </template>
@@ -56,7 +64,6 @@ const handleToMore = (item: string) => {
     .item-img {
       width: 100%;
       border-radius: 10px;
-      @include hover-effect;
     }
   }
 }
@@ -72,6 +79,7 @@ const handleToMore = (item: string) => {
     }
     .item-img {
       width: 100%;
+      @include hover-effect;
     }
   }
 }

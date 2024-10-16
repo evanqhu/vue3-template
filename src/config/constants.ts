@@ -13,6 +13,9 @@ export type eventTrackType = (eventName: string, method: string, eventParams?: o
 export const $logEvent = Symbol() as InjectionKey<logEventType>
 export const $eventTrack = Symbol() as InjectionKey<eventTrackType>
 
+/** 类别 */
+export const typeList = ["daily", "weekly", "monthly", "yearly"]
+
 /** 十二星座 */
 export const horoscopeList = [
   {

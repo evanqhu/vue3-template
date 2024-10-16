@@ -1,15 +1,36 @@
 <!-- 十二星座图标布局组件 -->
 <script setup lang="ts">
+import { useRouter } from "vue-router"
+
 import { horoscopeList } from "@/config/constants"
 
 defineOptions({
   name: "HoroscopeLayout"
 })
+
+interface Props {
+  type: string
+}
+const props = withDefaults(defineProps<Props>(), {
+  type: "daily"
+})
+
+const router = useRouter()
+
+const handleToResult = (name: string) => {
+  const url = `/${props.type}-${name.toLocaleLowerCase()}`
+  router.push(url)
+}
 </script>
 
 <template>
   <div class="horoscope-layout">
-    <div v-for="item in horoscopeList" :key="item.name" class="horoscope-item">
+    <div
+      v-for="item in horoscopeList"
+      :key="item.name"
+      class="horoscope-item"
+      @click="handleToResult(item.name)"
+    >
       <SvgIcon :name="item.name" class="icon" />
       <p class="name">{{ item.name }}</p>
       <p class="date">{{ item.date }}</p>
@@ -28,7 +49,6 @@ defineOptions({
     flex-direction: column;
     align-items: center;
     gap: 5px;
-    @include hover-effect(1.1);
 
     .icon {
       width: 100px;
@@ -38,7 +58,6 @@ defineOptions({
     .name {
       font-family: "Abhaya Libre";
       font-weight: 700;
-      margin-top: -20px;
     }
     .date {
       font-family: Roboto;
@@ -54,6 +73,7 @@ defineOptions({
     grid-gap: 40px 8px; /* 设置网格间距 */
 
     .horoscope-item {
+      @include hover-effect(1.1);
       gap: 10px;
 
       .icon {
@@ -62,7 +82,6 @@ defineOptions({
       }
       .name {
         font-size: 18px;
-        margin-top: -30px;
       }
       .date {
         font-size: 14px;
