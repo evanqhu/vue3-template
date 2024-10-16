@@ -76,13 +76,13 @@ const router = useRouter()
     padding: 32px 24px;
 
     .item-title {
+      font-size: 18px;
       font-weight: 600;
       margin-bottom: 20px;
     }
 
     .item-content {
       line-height: normal;
-      font-size: 14px;
     }
 
     &.about-us {
@@ -93,8 +93,7 @@ const router = useRouter()
 
     &.resource {
       .item-content {
-        cursor: pointer;
-        -webkit-tap-highlight-color: transparent;
+        @include hover-effect(1);
 
         &:not(:last-of-type) {
           margin-bottom: 20px;
@@ -106,7 +105,6 @@ const router = useRouter()
       color: rgba(255, 255, 255, 0.6);
 
       .item-content {
-        font-size: 10px;
         line-height: 2;
       }
     }

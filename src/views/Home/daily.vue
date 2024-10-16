@@ -2,6 +2,7 @@
 import { useHead } from "@unhead/vue"
 
 import HoroscopeLayout from "@/components/HoroscopeLayout/index.vue"
+import HoroscopeMore from "@/components/HoroscopeMore/index.vue"
 
 defineOptions({
   name: "HomeDaily"
@@ -26,6 +27,8 @@ useHead({
       <p>Choose Your Zodiac Sign</p>
     </div>
     <HoroscopeLayout />
+    <div class="more-title">More Horoscopes for You</div>
+    <HoroscopeMore type="daily" />
   </div>
 </template>
 
@@ -40,12 +43,17 @@ useHead({
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    font-family: "Abhaya Libre";
+    font-size: 20px;
+    font-weight: 700;
+  }
 
-    p {
-      font-family: "Abhaya Libre";
-      font-size: 20px;
-      font-weight: 700;
-    }
+  .more-title {
+    font-family: "Abhaya Libre";
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 30px;
   }
 }
 </style>
@@ -57,7 +65,7 @@ useHead({
 
 @media (min-width: 768px) {
   .app-content {
-    padding: 50px 0 100px;
+    padding: 50px 15px 100px;
   }
 }
 </style>

@@ -24,6 +24,16 @@ export const createRouter = (type: "client" | "server"): Router =>
             name: "weekly",
             path: "/weekly-horoscope",
             component: () => import("@/views/Home/weekly.vue")
+          },
+          {
+            name: "monthly",
+            path: "/monthly-horoscope",
+            component: () => import("@/views/Home/monthly.vue")
+          },
+          {
+            name: "yearly",
+            path: "/yearly-horoscope",
+            component: () => import("@/views/Home/yearly.vue")
           }
         ]
       }

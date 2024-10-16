@@ -5,16 +5,16 @@ import HoroscopeLayout from "@/components/HoroscopeLayout/index.vue"
 import HoroscopeMore from "@/components/HoroscopeMore/index.vue"
 
 defineOptions({
-  name: "HomeWeekly"
+  name: "HomeMonthly"
 })
 
 useHead({
-  title: "Weekly Horoscope - Plan Your Week with the Stars",
+  title: "Monthly Horoscope - Navigate the Month Ahead",
   meta: [
     {
       name: "description",
       content:
-        "Explore your weekly horoscope for detailed astrological insights. Prepare for the week ahead with our expert predictions."
+        "Unlock your monthly horoscope for in-depth astrological guidance. Discover what the stars have in store for you this month."
     }
   ]
 })
@@ -23,12 +23,12 @@ useHead({
 <template>
   <div class="app-content home">
     <div class="home-title">
-      <p>Weekly Forecast</p>
+      <p>Monthly Forecast</p>
       <p>Choose Your Zodiac Sign</p>
     </div>
     <HoroscopeLayout />
     <div class="more-title">More Horoscopes for You</div>
-    <HoroscopeMore type="weekly" />
+    <HoroscopeMore type="monthly" />
   </div>
 </template>
 

@@ -73,8 +73,7 @@ const router = useRouter()
 
     &.resource {
       .item-content {
-        cursor: pointer;
-        -webkit-tap-highlight-color: transparent;
+        @include hover-effect(1);
 
         &:not(:last-of-type) {
           margin-bottom: 20px;

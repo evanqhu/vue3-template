@@ -74,8 +74,7 @@ const handleItemClick = (item: { name: string; path: string }) => {
       font-family: "Roboto";
       font-weight: 600;
       font-size: 14px;
-      cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
+      @include hover-effect;
 
       &:not(:last-of-type) {
         border-bottom: 1px dashed #727272;

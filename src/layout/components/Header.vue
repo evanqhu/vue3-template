@@ -15,7 +15,7 @@ const APP_TITLE = import.meta.env.VITE_APP_TITLE
 
 /** 点击标题和 logo */
 const handleHeadClick = () => {
-  router.push({ name: "home" })
+  router.push("/")
 }
 
 /** 点击菜单 */
@@ -56,8 +56,7 @@ const handleMenuClick = () => {
     display: flex;
     align-items: center;
     gap: 5px;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
+    @include hover-effect;
 
     .app-title {
       font-family: "Rubik One";
@@ -68,8 +67,7 @@ const handleMenuClick = () => {
   .header-right {
     display: flex;
     align-items: center;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
+    @include hover-effect;
   }
 }
 </style>
