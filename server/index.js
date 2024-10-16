@@ -40,7 +40,7 @@ if (!isProduction) {
 }
 
 // 处理 ads.txt 请求
-app.get("/ads.txt", async (req, res) => {
+app.get("/ads.txt", async (_req, res) => {
   const content = (await vite.ssrLoadModule("/src/settings.ts")).defaultSettings.adSense.ads
   console.log("🚀🚀🚀  ads content: ", content)
   res.type("text/plain").send(content)
@@ -65,9 +65,10 @@ app.use("*", async (req, res) => {
     }
 
     // 调用服务端的 render 函数，生成流式内容和 Pinia 状态
-    const { stream, state, headPayload } = await render(url, ssrManifest, req)
+    const { stream, preloadLinks, state, headPayload } = await render(url, ssrManifest, req)
 
     const [htmlStart, htmlEnd] = template
+      .replace("<!--preload-links-->", preloadLinks)
       .replace("<!--pinia-state-->", state)
       .replace("<!--headTags-->", headPayload.headTags)
       .split("<!--app-html-->") // 将模板分割为头部和尾部

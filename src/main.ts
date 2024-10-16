@@ -19,7 +19,7 @@ const appTitle = import.meta.env.VITE_APP_TITLE
 // SSR 每个请求都需要一个新的应用实例，因此我们导出一个函数来创建一个新的应用实例
 // 如果使用状态管理器，我们也会在这里创建一个新的存储（store）
 // 每次请求时调用
-export async function createApp(type: "client" | "server") {
+export const createApp = async (type: "client" | "server") => {
   const app = createSSRApp(App)
 
   // 集成 Pinia 状态管理器

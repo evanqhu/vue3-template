@@ -57,15 +57,3 @@ useHead({
   }
 }
 </style>
-
-<style lang="scss">
-.app-content {
-  padding: 30px 15px 60px;
-}
-
-@media (min-width: 768px) {
-  .app-content {
-    padding: 50px 15px 100px;
-  }
-}
-</style>
