@@ -12,7 +12,7 @@ import { createApp } from "./main"
 
 /** 服务端渲染函数 */
 export const render = async (url: string, _ssrManifest: string, req: Request) => {
-  const manifest: Record<string, string[]> = JSON.parse(_ssrManifest) // 将字符串格式的 manifest 转换为对象
+  const manifest: Record<string, string[]> = _ssrManifest && JSON.parse(_ssrManifest) // 将字符串格式的 manifest 转换为对象
   const { app, store, router, head } = await createApp("server")
 
   // 根据请求头判断设备类型并存储状态
