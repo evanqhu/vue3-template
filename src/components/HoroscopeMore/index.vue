@@ -2,15 +2,17 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router"
 
-import { typeList } from "@/config/constants"
+import { typeList, type TypeListType } from "@/config/constants"
 import { capitalizeWords } from "@/utils"
 
 defineOptions({
   name: "HoroscopeMore"
 })
+
 interface Props {
   type: string
 }
+
 const props = withDefaults(defineProps<Props>(), {
   type: "daily"
 })
@@ -26,18 +28,30 @@ const handleToMore = (item: string) => {
     router.push(`/${item}-horoscope`)
   }
 }
+
+// #region 动态导入图片
+const images: Record<string, { default: string }> = import.meta.glob(
+  "@/assets/imgs/*-forecast.webp",
+  {
+    eager: true
+  }
+)
+// 从导入的模块中提取默认导出的路径
+const imageMap = Object.keys(images).reduce((acc, path) => {
+  const key = path.match(/\/(\w+)-forecast\.webp$/)?.[1] || "daily"
+  acc[key] = images[path].default || images[path]
+  return acc
+}, {})
+/** 动态获取图片 URL */
+const getImgUrl = (item: TypeListType) => imageMap[item] || imageMap["daily"]
+// #endregion
 </script>
 
 <template>
   <div class="horoscope-more">
     <div v-for="item in filteredTypeList" :key="item" class="more-item">
       <p class="item-title">{{ capitalizeWords(item) }} Forecast</p>
-      <img
-        class="item-img"
-        v-lazy="`src/assets/imgs/${item}-forecast.webp`"
-        alt=""
-        @click="handleToMore(item)"
-      />
+      <img class="item-img" v-lazy="getImgUrl(item)" alt="" @click="handleToMore(item)" />
     </div>
   </div>
 </template>

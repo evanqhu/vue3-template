@@ -80,6 +80,8 @@ const renderPreloadLink = (file: string) => {
     return ` <link rel="preload" href="${file}" as="image" type="image/jpeg">`
   } else if (file.endsWith(".png")) {
     return ` <link rel="preload" href="${file}" as="image" type="image/png">`
+  } else if (file.endsWith(".webp")) {
+    return ` <link rel="preload" href="${file}" as="image" type="image/webp">`
   } else {
     return ""
   }

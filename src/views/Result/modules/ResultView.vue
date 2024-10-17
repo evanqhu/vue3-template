@@ -5,6 +5,7 @@ import isoWeek from "dayjs/plugin/isoWeek" // 支持 ISO 周
 import { onMounted, ref } from "vue"
 import { useRouter } from "vue-router"
 
+import otherTypeImg from "@/assets/imgs/other-type.webp"
 import type { HoroscopeListType, TypeListType } from "@/config/constants"
 import { typeList } from "@/config/constants"
 import { capitalizeWords } from "@/utils"
@@ -96,7 +97,7 @@ onMounted(async () => {
       <div v-for="item in filteredTypeList" :key="item" class="other-type-item">
         <p>{{ horoscopeName }} {{ capitalizeWords(item) }} Forecast</p>
         <div class="item-content" @click="handleToOtherType(item)">
-          <img class="item-img" v-lazy="'src/assets/imgs/other-type.webp'" alt="" />
+          <img class="item-img" v-lazy="otherTypeImg" alt="" />
           <p class="item-img-text">{{ capitalizeWords(item) }} Forecast</p>
         </div>
       </div>
