@@ -19,9 +19,7 @@ const router = useRouter()
 
 const handleToResult = (name: string) => {
   const url = `/${props.type}-${name.toLocaleLowerCase()}`
-  router.push({
-    path: url
-  })
+  router.push(url)
 }
 </script>
 

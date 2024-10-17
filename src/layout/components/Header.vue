@@ -40,9 +40,9 @@ const handleMenuClick = () => {
 .header {
   position: absolute;
   width: 100%;
+  height: 50px;
   display: flex;
   justify-content: space-between;
-  height: 50px;
   padding: 0 15px;
   background: #fff;
   box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.08);

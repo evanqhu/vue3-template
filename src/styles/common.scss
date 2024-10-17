@@ -1,0 +1,10 @@
+// 一些公共样式
+.app-content {
+  padding: 30px 15px 60px;
+}
+
+@media (min-width: 768px) {
+  .app-content {
+    padding: 50px 15px 100px;
+  }
+}

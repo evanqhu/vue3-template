@@ -60,6 +60,16 @@ export const createRouter = (type: "client" | "server"): Router =>
           },
           ...horoscopeRoutes
         ]
+      },
+      {
+        name: "Terms of service",
+        path: "/terms-of-service",
+        component: () => import("@/views/TermsOfService/index.vue")
+      },
+      {
+        name: "Privacy policy",
+        path: "/privacy-policy",
+        component: () => import("@/views/PrivacyPolicy/index.vue")
       }
     ],
 

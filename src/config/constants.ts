@@ -14,7 +14,8 @@ export const $logEvent = Symbol() as InjectionKey<logEventType>
 export const $eventTrack = Symbol() as InjectionKey<eventTrackType>
 
 /** 类别 */
-export const typeList = ["daily", "weekly", "monthly", "yearly"]
+export const typeList = ["daily", "weekly", "monthly", "yearly"] as const
+export type TypeListType = (typeof typeList)[number]
 
 /** 十二星座 */
 export const horoscopeList = [
@@ -66,4 +67,5 @@ export const horoscopeList = [
     name: "Pisces",
     date: "Feb 19 - Mar 20"
   }
-]
+] as const
+export type HoroscopeListType = (typeof horoscopeList)[number]["name"]

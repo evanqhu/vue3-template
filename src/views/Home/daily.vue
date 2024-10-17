@@ -9,7 +9,7 @@ defineOptions({
 })
 
 useHead({
-  title: "DailyHoroscope - Your Daily Astrological Insights",
+  title: "Daily Horoscope - Your Daily Astrological Insights",
   meta: [
     {
       name: "description",
