@@ -16,7 +16,6 @@ const generateRoutes = () => {
         meta: {
           horoscopeName: horoscope.name
         },
-        // component: componentMap[type] // 动态选择组件
         component: () => import(`@/views/Result/${type}.vue`)
       }
     })

@@ -9,6 +9,7 @@ defineOptions({
 })
 
 const { isMobile } = useDevice()
+console.log("🚀🚀🚀  isMobile: ", isMobile.value)
 </script>
 
 <template>

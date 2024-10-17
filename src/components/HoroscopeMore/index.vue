@@ -34,7 +34,7 @@ const handleToMore = (item: string) => {
       <p class="item-title">{{ capitalizeWords(item) }} Forecast</p>
       <img
         class="item-img"
-        :src="`src/assets/imgs/${item}-forecast.webp`"
+        v-lazy="`src/assets/imgs/${item}-forecast.webp`"
         alt=""
         @click="handleToMore(item)"
       />
