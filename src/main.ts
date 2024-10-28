@@ -12,8 +12,6 @@ import { setupAnalytics } from "@/utils/firebase"
 
 import { $eventTrack, $logEvent } from "./config/constants"
 
-/** 事件队列，用于在 Analytics 初始化之前暂存事件 */
-
 const appTitle = import.meta.env.VITE_APP_TITLE
 
 // SSR 每个请求都需要一个新的应用实例，因此我们导出一个函数来创建一个新的应用实例

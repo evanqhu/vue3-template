@@ -1,7 +1,6 @@
-// commitlint 配置文件
-// @see: https://cz-git.qbb.sh/zh/guide/
+// @ts-check
 
-/** @type {import('cz-git').UserConfig} */
+/** @type {import("cz-git").UserConfig} */
 module.exports = {
   ignores: [(commit) => commit.includes("init")],
   extends: ["@commitlint/config-conventional"],
@@ -35,6 +34,7 @@ module.exports = {
       ]
     ]
   },
+  // 自定义 commitizen 交互式命令行工具的提示信息
   prompt: {
     messages: {
       // type: "Select the type of change that you're committing:",
@@ -80,25 +80,29 @@ module.exports = {
       // { value: 'ci', name: 'ci:       🎡  Changes to our CI configuration files and scripts', emoji: '🎡' },
       // { value: 'revert', name: 'revert:   ⏪️  Reverts a previous commit', emoji: '⏪️' },
       // 中文版
-      { value: "feat", name: "特性:   🚀  新增功能", emoji: "🚀" },
-      { value: "fix", name: "修复:   🧩  修复缺陷", emoji: "🧩" },
-      { value: "docs", name: "文档:   📚  文档变更", emoji: "📚" },
+      { value: "feat", name: "特性 feat:       🚀  新增功能", emoji: "🚀" },
+      { value: "fix", name: "修复 fix:        🧩  修复缺陷", emoji: "🧩" },
+      { value: "docs", name: "文档 docs:       📚  文档变更", emoji: "📚" },
       {
         value: "style",
-        name: "格式:   🎨  代码格式（不影响功能，例如空格、分号等格式修正）",
+        name: "格式 style:      🎨  代码格式（不影响功能，例如空格、分号等格式修正）",
         emoji: "🎨"
       },
-      { value: "refactor", name: "重构:   🔧  代码重构（不包括 bug 修复、功能新增）", emoji: "🔧" },
+      {
+        value: "refactor",
+        name: "重构 refactor:   🔧  代码重构（不包括 bug 修复、功能新增）",
+        emoji: "🔧"
+      },
       {
         value: "chore",
-        name: "其他:   🧰  对构建过程或辅助工具和库的更改（不影响源文件、测试用例）",
+        name: "其他 chore:      🧰  对构建过程或辅助工具和库的更改（不影响源文件、测试用例）",
         emoji: "🧰"
       },
       // { value: 'perf', name: '性能:   ⚡️  性能优化', emoji: '⚡️' },
       // { value: 'test', name: '测试:   ✅  添加疏漏测试或已有测试改动', emoji: '✅' },
       {
         value: "build",
-        name: "构建:   📦️  构建流程、外部依赖变更（如升级 npm 包、修改 webpack 配置等）",
+        name: "构建 build:      📦️  构建流程、外部依赖变更（如升级 npm 包、修改 webpack 配置等）",
         emoji: "📦️"
       }
       // { value: 'ci', name: '集成:   🎡  修改 CI 配置、脚本', emoji: '🎡' },

@@ -40,9 +40,9 @@ const handleMenuClick = () => {
 .header {
   position: absolute;
   width: 100%;
+  height: 50px;
   display: flex;
   justify-content: space-between;
-  height: 50px;
   padding: 0 15px;
   background: #fff;
   box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.08);
@@ -56,8 +56,7 @@ const handleMenuClick = () => {
     display: flex;
     align-items: center;
     gap: 5px;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
+    @include hover-effect;
 
     .app-title {
       font-family: "Rubik One";
@@ -68,8 +67,7 @@ const handleMenuClick = () => {
   .header-right {
     display: flex;
     align-items: center;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
+    @include hover-effect;
   }
 }
 </style>

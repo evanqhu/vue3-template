@@ -27,5 +27,13 @@ export const createRouter = (type: "client" | "server"): Router =>
           }
         ]
       }
-    ]
+    ],
+    // 滚动行为
+    scrollBehavior: () => {
+      // 找到自定义滚动容器
+      const scrollContainer = document.querySelector(".app-container")
+      if (scrollContainer) {
+        scrollContainer.scrollTo(0, 0) // 滚动到顶部
+      }
+    }
   })

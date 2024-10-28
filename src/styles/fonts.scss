@@ -21,10 +21,19 @@
 }
 
 @font-face {
-  font-family: roboto;
+  font-family: Roboto;
   font-style: normal;
   font-weight: 600;
   src:
     local("Roboto"),
     url(https://fonts.cdnfonts.com/s/12165/Roboto-Bold.woff) format("woff");
+}
+
+@font-face {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 900;
+  src:
+    local("Roboto Black"),
+    url(https://fonts.cdnfonts.com/s/12165/Roboto-Black.woff) format("woff");
 }

@@ -24,20 +24,5 @@ onMounted(() => {
 </script>
 
 <template>
-  <!-- <div class="temp">
-    <RouterLink to="/">Home</RouterLink>
-    <RouterLink to="/about">About</RouterLink>
-  </div> -->
   <RouterView />
 </template>
-
-<style lang="scss" scoped>
-.temp {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  padding: 1rem;
-}
-</style>
