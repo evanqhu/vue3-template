@@ -5,8 +5,6 @@ export const defaultSettings = {
     // 加载 AdSense 脚本的 URL
     scriptUrl:
       "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3125188477567991",
-    // AdSense 广告元信息
-    ads: "google.com, pub-3125188477567991, DIRECT, f08c47fec0942fa0",
     // 广告位配置
     home_1: {
       class: "adsbygoogle",

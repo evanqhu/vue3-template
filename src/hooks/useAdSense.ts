@@ -57,7 +57,7 @@ export const useAdSense = (adsRefs: any) => {
   /** 加载广告 */
   const displayAd = async () => {
     await nextTick() // 等待 DOM 更新完成
-    const adsElements = adsRefs.value // 获取所有元素数组
+    const adsElements = adsRefs?.value || [] // 获取所有元素数组
     if (!window.adsbygoogle || !window.adsbygoogle.loaded) {
       console.log("🚀🚀🚀 Adsense script not loaded yet, delaying ad display.")
       setTimeout(displayAd, 500) // 延迟再次尝试
@@ -65,7 +65,7 @@ export const useAdSense = (adsRefs: any) => {
     }
 
     // 遍历所有广告元素并加载广告
-    adsElements.forEach((element: any, index) => {
+    adsElements.forEach((element: any, index: number) => {
       console.log(`🚀🚀🚀 ready to push ad${index + 1}`, element.value.adsAttrs)
       ;(window.adsbygoogle = window.adsbygoogle || []).push({}) // 加载广告
     })
