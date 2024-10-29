@@ -5,10 +5,9 @@ import { renderSSRHead } from "@unhead/ssr"
 import type { Request } from "express"
 import { renderToWebStream } from "vue/server-renderer"
 
+import { DeviceEnum } from "@/config/constants"
+import { createApp } from "@/main"
 import { useAppStore } from "@/store/modules/app"
-
-import { DeviceEnum } from "./config/constants"
-import { createApp } from "./main"
 
 export async function render(url: string, _ssrManifest: string, req: Request) {
   const manifest: Record<string, string[]> = _ssrManifest && JSON.parse(_ssrManifest) // 将字符串格式的 manifest 转换为对象

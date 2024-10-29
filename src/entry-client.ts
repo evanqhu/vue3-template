@@ -11,11 +11,11 @@ const initializeApp = async () => {
   if (window.__INITIAL_STATE__) {
     const stateObj = JSON.parse(window.__INITIAL_STATE__)
     // 似乎可以解决服务端的状态注入到客户端时不匹配的问题
-    for (const key in store.state.value) {
-      Object.assign(store.state.value[key], stateObj[key])
-    }
+    // for (const key in store.state.value) {
+    //   Object.assign(store.state.value[key], stateObj[key])
+    // }
 
-    // store.state.value = stateObj // 无效操作
+    store.state.value = stateObj // 无效操作
   }
 
   router.isReady().then(() => {

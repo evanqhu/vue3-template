@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import { useHead } from "@unhead/vue"
+import { storeToRefs } from "pinia"
+
+import Adsbygoogle from "@/components/Adsbygoogle.vue"
+import { useAppStore } from "@/store/modules/app"
 
 useHead({
   title: "Home Page",
@@ -10,6 +14,9 @@ useHead({
     }
   ]
 })
+
+const appStore = useAppStore()
+const { adSense } = storeToRefs(appStore)
 </script>
 
 <template>
@@ -28,5 +35,8 @@ useHead({
       impedit quis eius mollitia qui sed suscipit temporibus eveniet unde modi eos nesciunt odio
       veniam.
     </div>
+    <Adsbygoogle :ads-attrs="adSense.home_1" />
+    <Adsbygoogle :ads-attrs="adSense.home_2" />
+    <Adsbygoogle :ads-attrs="adSense.home_3" />
   </main>
 </template>
