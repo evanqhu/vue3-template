@@ -1,32 +1,33 @@
 // 项目配置
 const APPTITLE = import.meta.env.VITE_APPTITLE
+const AD_CLIENT = import.meta.env.VITE_AD_CLIENT
 
 export const defaultSettings = {
   /** 广告配置 */
   adSense: {
     // 加载 AdSense 脚本的 URL
-    scriptUrl: `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8158555231596181`,
+    scriptUrl: `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${import.meta.env.PROD ? AD_CLIENT : "ca-google"}`,
     // 广告位配置
     home_1: {
       class: "adsbygoogle",
       style: "display:block",
-      "data-ad-client": "ca-pub-8158555231596181",
-      "data-ad-slot": "1468595611",
+      "data-ad-client": AD_CLIENT,
+      "data-ad-slot": "",
       "data-ad-format": "auto",
       "data-full-width-responsive": "true"
     },
     home_2: {
       class: "adsbygoogle",
       style: "display:block",
-      "data-ad-client": "ca-pub-8158555231596181",
-      "data-ad-slot": "9290411161",
+      "data-ad-client": AD_CLIENT,
+      "data-ad-slot": "",
       "data-ad-format": "auto",
       "data-full-width-responsive": "true"
     },
     home_3: {
       class: "adsbygoogle",
       style: "display:block",
-      "data-ad-client": "ca-pub-8158555231596181",
+      "data-ad-client": AD_CLIENT,
       "data-ad-slot": "5216268932",
       "data-ad-format": "auto",
       "data-full-width-responsive": "true"
