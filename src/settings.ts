@@ -5,8 +5,6 @@ const AD_CLIENT = import.meta.env.VITE_AD_CLIENT
 export const defaultSettings = {
   /** 广告配置 */
   adSense: {
-    // 加载 AdSense 脚本的 URL
-    scriptUrl: `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${import.meta.env.PROD ? AD_CLIENT : "ca-google"}`,
     // 广告位配置
     home_1: {
       class: "adsbygoogle",
