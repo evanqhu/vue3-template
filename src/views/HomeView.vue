@@ -2,7 +2,6 @@
 import { useHead } from "@unhead/vue"
 import { storeToRefs } from "pinia"
 
-import Adsbygoogle from "@/components/Adsbygoogle/index.vue"
 import { useAppStore } from "@/store/modules/app"
 
 useHead({

@@ -216,39 +216,33 @@ Firebase 相关代码集成在 `@/utils/firebase.ts` 中
 
 - AdSense 的配置文件在 `@/settings.ts` 下，修改此处的 adSense 内容即可
 
+- `Client` 信息存储在环境变量 `.env` 中
+
 - 配置文件中的内容被存储在 pinia 的 appStore 中
 
 - `ads.txt` 文件的内容直接写在 `public` 文件夹中
 
-```javascript
-import { storeToRefs } from "pinia"
-import { useAppStore } from "@/store/modules/app"
+- 在 main.ts 中通过 head.push 方法注入广告脚本
 
-const appStore = useAppStore()
-
-const { adSense, showDebug } = storeToRefs(appStore)
-```
+  ```javascript
+  head.push({
+    script: [
+      {
+        src: `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${import.meta.env.PROD ? AD_CLIENT : "ca-google"}`,
+        crossorigin: "anonymous",
+        async: true
+      }
+    ]
+  })
+  ```
 
 - 在组件中使用广告组件
 
-```html
-<AdSense ref="ad1" :adsAttrs="adSense.home_1" :showDebug="showDebug" />
-```
+  ```vue
+  <Adsbygoogle :adsAttrs="adSense.home_1" />
+  ```
 
-> `AdSense` 组件已全局注册，无需引入即可使用
-
-- 使用加载广告的 hook
-
-```javascript
-import { useAdSense } from "@/hooks/useAdSense"
-
-/** 广告组件引用 */
-const ad1 = ref(null)
-const ad2 = ref(null)
-const adsRefs = computed(() => [ad1, ad2])
-/** 加载广告 hook */
-useAdSense(adsRefs)
-```
+> `Adsbygoogle` 组件已全局注册，无需引入即可使用
 
 ### ⚙️ 广告调试
 

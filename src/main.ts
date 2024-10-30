@@ -4,7 +4,7 @@ import { createSSRApp } from "vue"
 import VueLazyLoad from "vue3-lazyload"
 
 import App from "@/App.vue"
-import AdSense from "@/components/AdSense/index.vue"
+import Adsbygoogle from "@/components/Adsbygoogle/index.vue"
 import { loadSvg } from "@/icons"
 import { createRouter } from "@/router"
 import { createStore } from "@/store"
@@ -13,6 +13,7 @@ import { setupAnalytics } from "@/utils/firebase"
 import { $eventTrack, $logEvent } from "./config/constants"
 
 const APP_TITLE = import.meta.env.VITE_APP_TITLE
+const AD_CLIENT = import.meta.env.VITE_AD_CLIENT
 
 // SSR 每个请求都需要一个新的应用实例，因此我们导出一个函数来创建一个新的应用实例
 // 如果使用状态管理器，我们也会在这里创建一个新的存储（store）
@@ -32,6 +33,13 @@ export async function createApp(type: "client" | "server") {
   const head = createHead()
   // NOTE 可在此处注入元信息
   head.push({
+    script: [
+      {
+        src: `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${import.meta.env.PROD ? AD_CLIENT : "ca-google"}`,
+        crossorigin: "anonymous",
+        async: true
+      }
+    ],
     meta: [
       {
         name: "og:title",
@@ -50,7 +58,8 @@ export async function createApp(type: "client" | "server") {
   loadSvg(app)
 
   // 全局注册组件 AdSense
-  app.component("AdSense", AdSense)
+  // eslint-disable-next-line
+  app.component("Adsbygoogle", Adsbygoogle)
 
   // Firebase 相关
   if (import.meta.env.SSR) {
