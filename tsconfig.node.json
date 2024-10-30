@@ -8,8 +8,7 @@
     "vitest.config.*", // Vitest 配置文件
     "cypress.config.*", // Cypress 配置文件
     "nightwatch.conf.*", // Nightwatch 配置文件
-    "playwright.config.*", // Playwright 配置文件
-    "./src/settings.ts"
+    "playwright.config.*" // Playwright 配置文件
   ],
 
   "compilerOptions": {

@@ -9,8 +9,7 @@
 - 安装 Firebase
 - 安装 AdSense 并封装组件
 - 使用 vue3-lazyload 图片懒加载插件
-- 使用 useDevice 判断设备类型，设备类型存储在 store 中
--
+- ## 使用 useDevice 判断设备类型，设备类型存储在 store 中
 
 待处理
 
@@ -254,3 +253,23 @@ useAdSense(adsRefs)
 ### ⚙️ 广告调试
 
 在 url 后面增加 `db` `query`参数即可，如 `www.xxx.com?db=1`，表示开启 debug 模式
+
+### ⚙️ 复制友好开发指南
+
+后面凡是用到网站名字相关的地方全部在 `.env` 或 `settings.ts` 中定义好变量
+
+```bash
+# .env
+VITE_APP_TITLE = "Astro Insights"
+VITE_APPTITLE = "AstroInsights"
+VITE_APP_EMAIL = "astroinsights.support@gmail.com"
+VITE_APP_URL = "astroinsights.click"
+```
+
+### ⚙️ 网站复制指南
+
+1. 修改 `package.json` 中的 `name`
+2. 修改所有 `.env` 中的网站相关的变量
+3. 修改 `ads.txt` 中的内容
+4. 修改 `src/settings.ts` 中的 `adsense`、`firebase`、`aboutUs`` 等
+5. 替换 `favicon.ico` 和 `app-logo.svg`

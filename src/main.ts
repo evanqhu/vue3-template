@@ -12,7 +12,7 @@ import { setupAnalytics } from "@/utils/firebase"
 
 import { $eventTrack, $logEvent } from "./config/constants"
 
-const appTitle = import.meta.env.VITE_APP_TITLE
+const APP_TITLE = import.meta.env.VITE_APP_TITLE
 
 // SSR 每个请求都需要一个新的应用实例，因此我们导出一个函数来创建一个新的应用实例
 // 如果使用状态管理器，我们也会在这里创建一个新的存储（store）
@@ -35,7 +35,7 @@ export async function createApp(type: "client" | "server") {
     meta: [
       {
         name: "og:title",
-        content: appTitle
+        content: APP_TITLE
       }
     ]
   })

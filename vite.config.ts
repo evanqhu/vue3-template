@@ -61,8 +61,7 @@ export default defineConfig(({ mode }) => {
       open: true,
       proxy: {
         "/api": {
-          // target: "https://service-exndqyuk-1257786608.gz.apigw.tencentcs.com",
-          target: "http://localhost:9999",
+          target: "http://test.api.example.com",
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, "")
         }

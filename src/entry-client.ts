@@ -10,12 +10,12 @@ const initializeApp = async () => {
   // 将服务端渲染的初始状态注入到 store 中
   if (window.__INITIAL_STATE__) {
     const stateObj = JSON.parse(window.__INITIAL_STATE__)
-    // 似乎可以解决服务端的状态注入到客户端时不匹配的问题
+    // NOTE 很奇怪，这两种方式有时候第一种生效，有时候第二种生效
     // for (const key in store.state.value) {
     //   Object.assign(store.state.value[key], stateObj[key])
     // }
 
-    store.state.value = stateObj // 无效操作
+    store.state.value = stateObj // 无效操作（有时候生效）
   }
 
   router.isReady().then(() => {
