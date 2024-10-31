@@ -6,7 +6,8 @@ import express from "express" // 导入 Express，用于创建 HTTP 服务器
 
 // 常量
 const isProduction = process.env.NODE_ENV === "production"
-const port = process.env.PORT || 5173
+// const port = process.env.PORT || 5173
+const port = isProduction ? 5000 : 5173
 const base = process.env.BASE || "/"
 
 // 在生产环境中缓存静态文件（HTML 和 ssr-manifest）

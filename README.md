@@ -265,5 +265,5 @@ VITE_APP_URL = "astroinsights.click"
 1. 修改 `package.json` 中的 `name`
 2. 修改所有 `.env` 中的网站相关的变量
 3. 修改 `ads.txt` 中的内容
-4. 修改 `src/settings.ts` 中的 `adsense`、`firebase`、`aboutUs`` 等
+4. 修改 `src/settings.ts` 中的 `adsense`、`firebase`、`aboutUs` 等
 5. 替换 `favicon.ico` 和 `app-logo.svg`
