@@ -66,13 +66,13 @@ const renderPreloadLinks = (modules: undefined | string[], manifest: Record<stri
 
 const renderPreloadLink = (file: string) => {
   if (file.endsWith(".js")) {
-    return `<link rel="modulepreload" crossorigin href="${file}">`
+    return `<link rel="modulepreload" href="${file}">`
   } else if (file.endsWith(".css")) {
     return `<link rel="stylesheet" href="${file}">`
   } else if (file.endsWith(".woff")) {
-    return `<link rel="preload" href="${file}" as="font" type="font/woff" crossorigin>`
+    return `<link rel="preload" href="${file}" as="font" type="font/woff">`
   } else if (file.endsWith(".woff2")) {
-    return `<link rel="preload" href="${file}" as="font" type="font/woff2" crossorigin>`
+    return `<link rel="preload" href="${file}" as="font" type="font/woff2">`
   } else if (file.endsWith(".gif")) {
     return `<link rel="preload" href="${file}" as="image" type="image/gif">`
   } else if (file.endsWith(".jpg") || file.endsWith(".jpeg")) {
