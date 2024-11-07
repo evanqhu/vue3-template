@@ -26,6 +26,10 @@ export const createRouter = (type: "client" | "server"): Router =>
             component: () => import("@/views/AboutView.vue")
           }
         ]
+      },
+      {
+        path: "/favicon.ico",
+        redirect: "/"
       }
     ],
     // 滚动行为

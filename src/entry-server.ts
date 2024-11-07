@@ -8,16 +8,22 @@ import { renderToWebStream } from "vue/server-renderer"
 import { DeviceEnum } from "@/config/constants"
 import { createApp } from "@/main"
 import { useAppStore } from "@/store/modules/app"
+import webConfigs from "@/webConfigs"
 
-export async function render(url: string, _ssrManifest: string, req: Request) {
+export async function render(url: string, host: string, _ssrManifest: string, req: Request) {
   const manifest: Record<string, string[]> = _ssrManifest && JSON.parse(_ssrManifest) // 将字符串格式的 manifest 转换为对象
+  const webConfig = webConfigs[host]
+
   const { app, store, router, head } = await createApp("server")
 
   // 根据请求头判断设备类型并存储状态
   const userAgent = req.headers["user-agent"] || "mobile"
   const isMobile = /mobile|android|webos|iphone|ipod|blackberry/i.test(userAgent)
-  const appStore = useAppStore()
+  const appStore = useAppStore(store)
+
+  // 服务端设置设备类型和网站配置，存储到 state 中
   appStore.toggleDevice(isMobile ? DeviceEnum.Mobile : DeviceEnum.Desktop)
+  appStore.setWebConfig(webConfig)
 
   // 将状态序列化为 JSON 字符串
   const state = JSON.stringify(store.state.value)
@@ -84,4 +90,9 @@ const renderPreloadLink = (file: string) => {
   } else {
     return ""
   }
+}
+
+/** 生产环境下暴露获取 webConfigs 的函数 */
+export function getWebConfigs() {
+  return webConfigs
 }

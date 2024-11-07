@@ -109,6 +109,9 @@ onBeforeUnmount(() => {
   display: flex;
   flex-direction: column;
   width: 100%;
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 16px;
 }
 .ads-content {
   border-bottom: 1px solid #c6c6c6;
@@ -117,7 +120,6 @@ onBeforeUnmount(() => {
   .ads-content-title {
     display: flex;
     place-items: center;
-    font-family: Roboto;
     font-size: 10px;
     color: #999;
     line-height: normal;
@@ -137,5 +139,8 @@ onBeforeUnmount(() => {
       margin-left: 15px;
     }
   }
+}
+.ads-debug {
+  border: 1px solid red;
 }
 </style>

@@ -7,7 +7,6 @@ import express from "express" // 导入 Express，用于创建 HTTP 服务器
 // 常量
 const isProduction = process.env.NODE_ENV === "production"
 const port = process.env.PORT || 5173
-// const port = isProduction ? 5001 : 5173
 const base = process.env.BASE || "/"
 
 // 在生产环境中缓存静态文件（HTML 和 ssr-manifest）
@@ -40,9 +39,27 @@ if (!isProduction) {
   app.use(base, sirv("./dist/client", { extensions: [] })) // 提供静态资源服务，服务路径为 './dist/client'
 }
 
+// 处理 ads.txt 请求
+app.get("/ads.txt", async (req, res) => {
+  try {
+    const host = getHost(req.headers.host.split(":")[0]) // 获取请求的主机名
+    let content
+    if (!isProduction) {
+      content = (await vite.ssrLoadModule("/src/webConfigs.ts")).default[host].adSense.ads
+    } else {
+      content = (await import("../dist/server/entry-server.js")).getWebConfigs()[host].adSense.ads
+    }
+    res.type("text/plain").send(content)
+  } catch (e) {
+    console.log(e.stack) // 打印错误堆栈
+    res.status(500).end(e.stack) // 返回 500 错误，并输出堆栈信息
+  }
+})
+
 // 处理所有的 HTML 请求
 app.use("*", async (req, res) => {
   try {
+    const host = getHost(req.headers.host.split(":")[0]) // 获取请求的主机名
     const url = req.originalUrl.replace(base, "") // 获取请求的 URL，并去除基础路径
 
     let template
@@ -59,7 +76,7 @@ app.use("*", async (req, res) => {
     }
 
     // 调用服务端的 render 函数，生成流式内容和 Pinia 状态
-    const { stream, preloadLinks, state, headPayload } = await render(url, ssrManifest, req)
+    const { stream, preloadLinks, state, headPayload } = await render(url, host, ssrManifest, req)
 
     const [htmlStart, htmlEnd] = template
       .replace("<!--preload-links-->", preloadLinks)
@@ -104,3 +121,11 @@ app.listen(port, "0.0.0.0", () => {
   console.log(`- Local:   http://localhost:${port}`)
   console.log(`- Network: http://${localIP}:${port}`) // 打印局域网内可访问的 IP 地址
 })
+
+function getHost(params) {
+  let host = params
+  if (params.startsWith("www")) {
+    host = params.replace("www.", "")
+  }
+  return host
+}

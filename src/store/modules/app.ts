@@ -2,7 +2,6 @@ import { defineStore } from "pinia"
 import { ref } from "vue"
 
 import { DeviceEnum } from "@/config/constants"
-import { defaultSettings } from "@/settings"
 
 export const useAppStore = defineStore("app", () => {
   /** 设备类型 */
@@ -11,11 +10,11 @@ export const useAppStore = defineStore("app", () => {
   /** MenuDrawer 状态 */
   const menuDrawerOpened = ref(false)
 
-  /** adSenseConfig */
-  const adSense = ref(defaultSettings.adSense)
-
   /** 调试广告模式 */
   const showDebug = ref(false)
+
+  /** 网站配置 */
+  const webConfig = ref()
 
   /** 切换设备类型 */
   const toggleDevice = (type: DeviceEnum) => {
@@ -32,13 +31,19 @@ export const useAppStore = defineStore("app", () => {
     showDebug.value = type
   }
 
+  /** 设置 webConfig */
+  const setWebConfig = (config: any) => {
+    webConfig.value = config
+  }
+
   return {
     device,
     menuDrawerOpened,
-    adSense,
     showDebug,
+    webConfig,
     toggleDevice,
     toggleMenuDrawer,
-    toggleDebug
+    toggleDebug,
+    setWebConfig
   }
 })

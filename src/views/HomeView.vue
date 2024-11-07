@@ -34,8 +34,8 @@ const { adSense } = storeToRefs(appStore)
       impedit quis eius mollitia qui sed suscipit temporibus eveniet unde modi eos nesciunt odio
       veniam.
     </div>
-    <Adsbygoogle :ads-attrs="adSense.home_1" />
+    <!-- <Adsbygoogle :ads-attrs="adSense.home_1" />
     <Adsbygoogle :ads-attrs="adSense.home_2" />
-    <Adsbygoogle :ads-attrs="adSense.home_3" />
+    <Adsbygoogle :ads-attrs="adSense.home_3" /> -->
   </main>
 </template>
