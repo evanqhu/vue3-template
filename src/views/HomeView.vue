@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useHead } from "@unhead/vue"
-import { storeToRefs } from "pinia"
 
 import { useAppStore } from "@/store/modules/app"
 
@@ -15,7 +14,6 @@ useHead({
 })
 
 const appStore = useAppStore()
-const { adSense } = storeToRefs(appStore)
 </script>
 
 <template>

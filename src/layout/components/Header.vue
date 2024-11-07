@@ -9,13 +9,11 @@ defineOptions({
 
 const router = useRouter()
 const appStore = useAppStore()
-const { toggleMenuDrawer } = appStore
-
-const APP_TITLE = import.meta.env.VITE_APP_TITLE
+const { webConfig, toggleMenuDrawer } = appStore
 
 /** 点击标题和 logo */
 const handleHeadClick = () => {
-  router.push({ name: "home" })
+  router.push("/")
 }
 
 /** 点击菜单 */
@@ -27,8 +25,8 @@ const handleMenuClick = () => {
 <template>
   <header class="header">
     <div class="header-left" @click="handleHeadClick">
-      <SvgIcon name="app-logo" width="30" height="30" />
-      <div class="app-title">{{ APP_TITLE }}</div>
+      <SvgIcon :name="webConfig.appLogo" width="30" height="30" />
+      <div class="app-title">{{ webConfig.appTitle }}</div>
     </div>
     <div class="header-right" @click="handleMenuClick">
       <SvgIcon name="menu" width="25" height="25" />

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router"
 
-import { defaultSettings } from "@/settings"
+import { resourceList } from "@/config/constants"
 import { useAppStore } from "@/store/modules/app"
 
 const appStore = useAppStore()
@@ -24,7 +24,7 @@ const handleItemClick = (item: { name: string; path: string }) => {
     <div class="resource">Resource</div>
     <ul class="menu-list">
       <li
-        v-for="(item, index) in defaultSettings.resource"
+        v-for="(item, index) in resourceList"
         :key="index"
         class="menu-item"
         @click="handleItemClick(item)"

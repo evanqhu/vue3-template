@@ -5,20 +5,18 @@
 ### 🚀 特性
 
 - 移动端和 PC 端适配
-- 使用 Unhead 处理 title 和 meta（需完善）
-- 安装 Firebase
-- 安装 AdSense 并封装组件
-- 使用 vue3-lazyload 图片懒加载插件
-- ## 使用 useDevice 判断设备类型，设备类型存储在 store 中
+- 使用 `Unhead` 处理 `title` 和 `meta`（需完善）
+- 安装 `Firebase`
+- 安装 `AdSense` 并封装组件 `Adsbygoogle`
+- 使用 `vue3-lazyload` 图片懒加载插件
+- 使用 `useDevice` 判断设备类型，设备类型存储在 `store` 中
+- 使用 `webConfigs.ts` 配置文件同时部署多个域名
 
-待处理
+**待处理**
 
-- [ ] 优化 Firebase
-- [ ] 优化 Adsense
 - [ ] Winston 日志记录
 - [ ] Vite 图片压缩插件
-- [ ] Unhead 服务端渲染 meta
-- [ ] 加一个相对单位
+- [ ] Unhead 服务端渲染无效
 
 ### ⚙️ 运行项目
 
@@ -81,11 +79,15 @@ pnpm run commit
   "build:client": "vite build --ssrManifest --outDir dist/client",
   "build:server": "vite build --ssr src/entry-server.ts --outDir dist/server",
   "type-check": "vue-tsc --build --force",
+  # 预览（需在打包后执行）
   "preview": "cross-env NODE_ENV=production node server",
+  # 语法校验
   "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+  # 风格校验
   "format": "prettier --write src/",
   "prepare": "husky",
   "lint-staged": "lint-staged",
+  # 提交代码
   "commit": "bash pull-commit-push.sh"
   },
 ```
@@ -170,8 +172,6 @@ export default defineConfig(() => {
 
 CDN 部署地址：修改 `.env` 文件中的 `VITE_PUBLIC_PATH`
 
-项目名称：修改 `.env` 文件中的 `VITE_APP_TITLE`
-
 ### ⚙️ Svg 组件
 
 项目中通过 `vite-plugin-svg-icons` 包封装了 Svg 组件，使用方法如下
@@ -196,22 +196,42 @@ CDN 部署地址：修改 `.env` 文件中的 `VITE_PUBLIC_PATH`
 
 ### ⚙️ 处理 head 信息
 
-项目中通过 `Unhead` 包添加 title 和 meta，使用方法如下：
+项目中通过 `Unhead` 包添加 `title` 和 `meta`，使用方法如下：
 
-- 添加全局的 head 信息可在 `@/main.ts` 中添加
+- 在 `App.vue` 中添加全局的 `head` 信息
 
 ```javascript
-head.push({
+useHead({
+  title: webConfig.appTitle,
   meta: [
     {
       name: "og:title",
-      content: appTitle
+      content: webConfig.appTitle
+    }
+  ],
+  script: [
+    {
+      src: `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${webConfig.adSense.scriptUrl}`,
+      crossorigin: "anonymous",
+      async: true
     }
   ]
 })
+
+// 动态加载 icon
+onMounted(async () => {
+  useHead({
+    link: [
+      {
+        rel: "icon",
+        href: (await import(`@/icons/logos/${webConfig.appLogo}.svg`)).default
+      }
+    ]
+  })
+})
 ```
 
-- 给路由组件添加标题和 meta，可以在组件中使用 useHead
+- 给路由组件添加标题和 `meta`，可以在组件中使用 `useHead`
 
 ```javascript
 import { useHead } from "@unhead/vue"
@@ -231,28 +251,27 @@ useHead({
 
 ### ⚙️ Firebase 相关
 
-Firebase 相关代码集成在 `@/utils/firebase.ts` 中
-配置文件在 `@/settings.ts` 下，修改此处的 firebase 内容即可
+- 配置文件在 `src/webConfigs.ts` 中
+- Firebase 相关代码集成在 `@/hooks/useFirebase.ts` 中
+- 在 `App.vue` 中使用 `useFirebase()` 即可，然后通过 provide 将函数传递给后代的 `Adsbygoogle` 组件
 
-> 暂未完成
+```javascript
+const { customLogEvent, customEventTrack } = useFirebase()
+provide($logEvent, customLogEvent)
+provide($eventTrack, customEventTrack)
+```
 
 ### ⚙️ AdSense 相关
 
-- AdSense 的配置文件在 `@/settings.ts` 下，修改此处的 adSense 内容即可
+- 配置文件在 `src/webConfigs.ts` 中
 
-- `Client` 信息存储在环境变量 `.env` 中
-
-- 配置文件中的内容被存储在 pinia 的 appStore 中
-
-- `ads.txt` 文件的内容直接写在 `public` 文件夹中
-
-- 在 main.ts 中通过 head.push 方法注入广告脚本
+- 在 `App.vue` 中通过 `useHead` 注入广告脚本
 
   ```javascript
-  head.push({
+  useHead({
     script: [
       {
-        src: `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${import.meta.env.PROD ? AD_CLIENT : "ca-google"}`,
+        src: `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${webConfig.adSense.scriptUrl}`,
         crossorigin: "anonymous",
         async: true
       }
@@ -270,14 +289,9 @@ Firebase 相关代码集成在 `@/utils/firebase.ts` 中
 
 ### ⚙️ 广告调试
 
-在 url 后面增加 `db` `query`参数即可，如 `www.xxx.com?db=1`，表示开启 debug 模式
-
-### ⚙️ 复制友好开发指南
+在 `url` 后面增加 `db` `query`参数即可，如 `www.xxx.com?db=1`，表示开启 debug 模式
 
 ### ⚙️ 网站复制指南
 
-1. 修改 `package.json` 中的 `name`
-2. 修改所有 `.env` 中的网站相关的变量
-3. 修改 `ads.txt` 中的内容
-4. 修改 `src/settings.ts` 中的 `adsense`、`firebase`、`aboutUs` 等
-5. 替换 `favicon.ico` 和 `app-logo.svg`
+1. 修改 `webConfigs.ts` 文件
+1. 将 `logo` 放在 `icons/logos` 文件夹下，`svg` 格式，命名参考 `webConfigs.ts` 中的 `appLogo` 字段

@@ -18,6 +18,7 @@ const { customLogEvent, customEventTrack } = useFirebase()
 provide($logEvent, customLogEvent)
 provide($eventTrack, customEventTrack)
 
+// 设置页面标题，加载广告脚本
 useHead({
   title: webConfig.appTitle,
   meta: [
@@ -28,13 +29,14 @@ useHead({
   ],
   script: [
     {
-      src: `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${webConfig.adSense.scriptUrl}`,
+      src: `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${webConfig.adSense.client}`,
       crossorigin: "anonymous",
       async: true
     }
   ]
 })
 
+// 动态加载 icon
 onMounted(async () => {
   useHead({
     link: [

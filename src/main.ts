@@ -26,8 +26,6 @@ export async function createApp(type: "client" | "server") {
   // 集成 unhead
   const head = createHead()
   app.use(head)
-  // const demo = await head.resolveTags()
-  // console.log("🚀🚀🚀  demo: ", demo)
 
   // 集成 VueLazyLoad
   app.use(VueLazyLoad, {})
