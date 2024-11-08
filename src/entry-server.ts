@@ -5,9 +5,9 @@ import { renderSSRHead } from "@unhead/ssr"
 import type { Request } from "express"
 import { renderToWebStream } from "vue/server-renderer"
 
-import { DeviceEnum } from "@/config/constants"
+import { DeviceEnum } from "@/configs/constants"
 import { createApp } from "@/main"
-import { useAppStore } from "@/store/modules/app"
+import { useAppStore } from "@/stores/modules/app"
 import webConfigs from "@/webConfigs"
 
 export async function render(url: string, host: string, _ssrManifest: string, req: Request) {

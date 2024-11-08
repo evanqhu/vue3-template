@@ -2,7 +2,7 @@
 import { getAnalytics, logEvent } from "firebase/analytics"
 import { initializeApp } from "firebase/app"
 
-import { useAppStore } from "@/store/modules/app"
+import { useAppStore } from "@/stores/modules/app"
 
 export const useFirebase = () => {
   const appStore = useAppStore()

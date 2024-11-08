@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useHead } from "@unhead/vue"
 
-import { useAppStore } from "@/store/modules/app"
+import { useAppStore } from "@/stores/modules/app"
 
 useHead({
   title: "Home Page",

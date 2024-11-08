@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router"
 
-import { resourceList } from "@/config/constants"
-import { useAppStore } from "@/store/modules/app"
+import { resourceList } from "@/configs/constants"
+import { useAppStore } from "@/stores/modules/app"
 
 const appStore = useAppStore()
 const { toggleMenuDrawer } = appStore

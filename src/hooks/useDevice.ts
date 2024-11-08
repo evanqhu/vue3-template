@@ -1,7 +1,7 @@
 import { computed } from "vue"
 
-import { DeviceEnum } from "@/config/constants"
-import { useAppStore } from "@/store/modules/app"
+import { DeviceEnum } from "@/configs/constants"
+import { useAppStore } from "@/stores/modules/app"
 
 export const useDevice = () => {
   const appStore = useAppStore()

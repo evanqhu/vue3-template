@@ -11,7 +11,7 @@ import { createSvgIconsPlugin } from "vite-plugin-svg-icons"
 export default defineConfig(({ mode }) => {
   // 加载环境变量文件
   const viteEnv = loadEnv(mode, process.cwd())
-  const { VITE_PUBLIC_PATH } = viteEnv
+  const { VITE_PUBLIC_PATH } = viteEnv // 静态资源地址
 
   return {
     // 打包时根据实际情况修改 base

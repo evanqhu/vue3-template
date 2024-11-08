@@ -291,6 +291,16 @@ provide($eventTrack, customEventTrack)
 
 在 `url` 后面增加 `db` `query`参数即可，如 `www.xxx.com?db=1`，表示开启 debug 模式
 
+### ⚙️ 项目部署
+
+项目部署到服务器上时，告知运运维打包命令：`pnpm run build`
+
+告知运维打包后静态资源上传的 CDN 目录，也就是环境变量中的 `VITE_PUBLIC_PATH`
+
+之后会运行 `run.sh` 文件，执行 `NODE_ENV=production PORT=5000 node server/index.js`
+
+以上命令将部署的端口号设为 5000，将 `NODE_ENV` 环境变量设为 `production`
+
 ### ⚙️ 网站复制指南
 
 1. 修改 `webConfigs.ts` 文件

@@ -7,7 +7,7 @@ import App from "@/App.vue"
 import Adsbygoogle from "@/components/Adsbygoogle/index.vue"
 import { loadSvg } from "@/icons"
 import { createRouter } from "@/router"
-import { createStore } from "@/store"
+import { createStore } from "@/stores"
 
 // SSR 每个请求都需要一个新的应用实例，因此我们导出一个函数来创建一个新的应用实例
 // 如果使用状态管理器，我们也会在这里创建一个新的存储（store）

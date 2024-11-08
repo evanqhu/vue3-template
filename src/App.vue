@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { useHead } from "@unhead/vue"
-import { onBeforeMount, onMounted, provide } from "vue"
+import { onBeforeMount, provide } from "vue"
 import { useRoute } from "vue-router"
 
-import { $eventTrack, $logEvent } from "@/config/constants"
+import { $eventTrack, $logEvent } from "@/configs/constants"
 import { useFirebase } from "@/hooks/useFirebase"
 import { useResize } from "@/hooks/useResize"
-import { useAppStore } from "@/store/modules/app"
+import { useAppStore } from "@/stores/modules/app"
 
 useResize()
 const route = useRoute()
@@ -33,19 +33,13 @@ useHead({
       crossorigin: "anonymous",
       async: true
     }
+  ],
+  link: [
+    {
+      rel: "icon",
+      href: import(`@/icons/logos/${webConfig.appLogo}.svg`)?.dafault
+    }
   ]
-})
-
-// 动态加载 icon
-onMounted(async () => {
-  useHead({
-    link: [
-      {
-        rel: "icon",
-        href: (await import(`@/icons/logos/${webConfig.appLogo}.svg`)).default
-      }
-    ]
-  })
 })
 
 onBeforeMount(() => {

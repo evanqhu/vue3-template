@@ -2,7 +2,7 @@
 import { inject, nextTick, onActivated, onBeforeUnmount, onMounted, ref } from "vue"
 import { useRoute } from "vue-router"
 
-import { $eventTrack, type eventTrackType } from "@/config/constants"
+import { $eventTrack, type eventTrackType } from "@/configs/constants"
 
 defineOptions({
   name: "AdsbyGoogle"
