@@ -12,14 +12,14 @@ interface Props {
   /**
    * 广告配置对象 data-ad-client data-ad-slot 等
    */
-  adsAttrs: object
+  adsAttrs?: object
   /**
    * 自定义样式
    */
   customClass?: string
 }
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   adsAttrs: () => ({}),
   customClass: ""
 })
@@ -66,6 +66,7 @@ const observeAdStatus = () => {
 /** 展示广告 */
 const showAd = async () => {
   await nextTick()
+  if (!Object.keys(props.adsAttrs).includes("class")) return
   try {
     ;(window.adsbygoogle = window.adsbygoogle || []).push({})
     eventTrack("load_ads", "expose")
