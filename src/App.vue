@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useHead } from "@unhead/vue"
-import { onBeforeMount, onMounted, provide } from "vue"
+import { onBeforeMount, onMounted, provide, ref } from "vue"
 import { useRoute } from "vue-router"
 
 import { $eventTrack, $logEvent } from "@/configs/constants"
@@ -18,6 +18,8 @@ const { customLogEvent, customEventTrack } = useFirebase()
 provide($logEvent, customLogEvent)
 provide($eventTrack, customEventTrack)
 
+const iconUrl = ref("")
+
 // 设置页面标题，加载广告脚本
 useHead({
   title: webConfig.appTitle,
@@ -33,18 +35,18 @@ useHead({
       crossorigin: "anonymous",
       async: true
     }
+  ],
+  link: [
+    {
+      rel: "icon",
+      href: iconUrl
+    }
   ]
 })
 
+// TODO 动态引入 icon
 onMounted(async () => {
-  useHead({
-    link: [
-      {
-        rel: "icon",
-        href: (await import(`@/icons/logos/${webConfig.appLogo}.svg`)).default
-      }
-    ]
-  })
+  iconUrl.value = (await import(`@/icons/logos/${webConfig.appLogo}.svg`)).default
 })
 
 onBeforeMount(() => {
