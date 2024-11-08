@@ -17,12 +17,14 @@ const appStore = useAppStore()
 const {
   webConfig: { adSense }
 } = appStore
+
+const demo = "daily-forecast"
 </script>
 
 <template>
   <div class="home">
     <h1>This is the home page</h1>
-    <div class="demo">
+    <div>
       Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea quae excepturi unde laudantium
       repellendus voluptate voluptatibus, assumenda modi eum, voluptatum molestias nulla quia hic
       natus similique sapiente molestiae quis rerum? Lorem ipsum dolor, sit amet consectetur
@@ -40,8 +42,4 @@ const {
   </div>
 </template>
 
-<style lang="scss" scoped>
-.demo {
-  height: 2000px;
-}
-</style>
+<style lang="scss" scoped></style>

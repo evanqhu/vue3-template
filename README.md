@@ -19,53 +19,9 @@
 - [ ] Unhead 服务端渲染无效，服务端返回的 HTML 文件中未包含 useHead 定义的内容
 - [ ] `App.vue` 中动态引入 icon 的方法，不确定是否合理
 
-### ⚙️ 运行项目
-
-- Node 版本：v18+
-
-- 安装依赖
-
-```bash
-pnpm install
-```
-
-- 开发
-
-```bash
-pnpm run dev
-```
-
-- 打包
-
-```bash
-pnpm run build
-```
-
-- 预览
-
-```bash
-pnpm run preview # 需在打包后执行
-```
-
-- 语法校验
-
-```bash
-pnpm run lint
-```
-
-- 风格校验
-
-```bash
-pnpm run format
-```
-
-- 提交代码
-
-```bash
-pnpm run commit
-```
-
 ### ⚙️ 脚本介绍
+
+Node 版本：v18+
 
 ```ini
 "scripts": {
@@ -173,6 +129,8 @@ export default defineConfig(() => {
 
 CDN 部署地址：修改 `.env` 文件中的 `VITE_PUBLIC_PATH`
 
+后端接口路径：修改 `.env` 文件中的 `VITE_BASE_API`
+
 ### ⚙️ Svg 组件
 
 项目中通过 `vite-plugin-svg-icons` 包封装了 Svg 组件，使用方法如下
@@ -181,7 +139,7 @@ CDN 部署地址：修改 `.env` 文件中的 `VITE_PUBLIC_PATH`
 - 在组件中使用
 
 ```html
-<SvgIcon name="fullscreen" width="20px" height="20px" />
+<SvgIcon name="menu" width="20px" height="20px" />
 ```
 
 注意事项：
@@ -194,6 +152,10 @@ CDN 部署地址：修改 `.env` 文件中的 `VITE_PUBLIC_PATH`
 项目中使用 `vue3-lazyload` 包实现图片懒加载，使用方法如下：
 
 - 将 `img` 标签的 `src` 属性换成 `v-lazy` 即可
+
+```html
+<img v-lazy="`/src/assets/images/${demo}.webp`" alt="" />
+```
 
 ### ⚙️ 处理 head 信息
 

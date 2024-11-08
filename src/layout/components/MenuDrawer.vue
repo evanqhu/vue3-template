@@ -41,8 +41,9 @@ const handleItemClick = (item: { name: string; path: string }) => {
   background: #000;
   opacity: 0.3;
   width: 100%;
-  height: 100%;
+  // height: 100%;
   top: 50px;
+  bottom: 0;
   position: absolute;
   z-index: 999;
 }
@@ -71,7 +72,6 @@ const handleItemClick = (item: { name: string; path: string }) => {
       align-items: center;
       justify-content: space-between;
       height: 50px;
-      font-family: "Roboto";
       font-weight: 600;
       font-size: 14px;
       cursor: pointer;

@@ -13,9 +13,9 @@ const appStore = useAppStore()
 </script>
 
 <template>
+  <MenuDrawer />
   <div class="app-container" :style="{ overflow: appStore.menuDrawerOpened ? 'hidden' : 'auto' }">
     <Header />
-    <MenuDrawer />
     <RouterView v-slot="{ Component }">
       <Transition name="fade" mode="out-in">
         <KeepAlive>

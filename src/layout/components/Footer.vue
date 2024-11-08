@@ -52,7 +52,6 @@ const router = useRouter()
   flex-direction: column;
   background: #333;
   color: #fff;
-  font-family: "Roboto";
 
   .footer-item {
     display: flex;

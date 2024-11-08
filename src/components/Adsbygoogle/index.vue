@@ -109,7 +109,6 @@ onBeforeUnmount(() => {
   display: flex;
   flex-direction: column;
   width: 100%;
-  font-family: Roboto;
   font-weight: 400;
   font-size: 16px;
 }

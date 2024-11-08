@@ -29,14 +29,15 @@ const handleMenuClick = () => {
       <div class="app-title">{{ webConfig.appTitle }}</div>
     </div>
     <div class="header-right" @click="handleMenuClick">
-      <SvgIcon name="menu" width="25" height="25" />
+      <SvgIcon v-if="appStore.menuDrawerOpened" name="close" width="25" height="25" />
+      <SvgIcon v-else name="menu" width="25" height="25" />
     </div>
   </header>
 </template>
 
 <style lang="scss" scoped>
 .header {
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 50px;
   display: flex;
