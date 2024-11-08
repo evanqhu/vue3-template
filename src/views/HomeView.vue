@@ -14,6 +14,9 @@ useHead({
 })
 
 const appStore = useAppStore()
+const {
+  webConfig: { adSense }
+} = appStore
 </script>
 
 <template>
@@ -32,8 +35,7 @@ const appStore = useAppStore()
       impedit quis eius mollitia qui sed suscipit temporibus eveniet unde modi eos nesciunt odio
       veniam.
     </div>
-    <!-- <Adsbygoogle :ads-attrs="adSense.home_1" />
+    <Adsbygoogle :ads-attrs="adSense.home_1" />
     <Adsbygoogle :ads-attrs="adSense.home_2" />
-    <Adsbygoogle :ads-attrs="adSense.home_3" /> -->
   </main>
 </template>

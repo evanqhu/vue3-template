@@ -17,9 +17,27 @@ const defaultConfig = {
   },
   adSense: {
     client: "ca-google",
-    ads: "template ads"
+    ads: "template ads",
+    home_1: {
+      class: "adsbygoogle",
+      style: "display:block",
+      "data-ad-client": "ca-pub-8158555231596181",
+      "data-ad-slot": "1468595611",
+      "data-ad-format": "auto",
+      "data-full-width-responsive": "true"
+    },
+    home_2: {
+      class: "adsbygoogle",
+      style: "display:block",
+      "data-ad-client": "ca-pub-8158555231596181",
+      "data-ad-slot": "9290411161",
+      "data-ad-format": "auto",
+      "data-full-width-responsive": "true"
+    }
   }
 }
+
+export type WebConfig = typeof defaultConfig
 
 export default {
   localhost: defaultConfig

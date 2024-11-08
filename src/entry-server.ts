@@ -10,8 +10,9 @@ import { createApp } from "@/main"
 import { useAppStore } from "@/stores/modules/app"
 import webConfigs from "@/webConfigs"
 
-export async function render(url: string, host: string, _ssrManifest: string, req: Request) {
-  const manifest: Record<string, string[]> = _ssrManifest && JSON.parse(_ssrManifest) // 将字符串格式的 manifest 转换为对象
+export async function render(url: string, host: string, ssrManifest: string, req: Request) {
+  const manifest: Record<string, string[]> = ssrManifest && JSON.parse(ssrManifest) // 将字符串格式的 manifest 转换为对象
+  // 根据请求的 host 获取对应的网站配置
   const webConfig = webConfigs[host]
 
   const { app, store, router, head } = await createApp("server")
@@ -19,11 +20,11 @@ export async function render(url: string, host: string, _ssrManifest: string, re
   // 根据请求头判断设备类型并存储状态
   const userAgent = req.headers["user-agent"] || "mobile"
   const isMobile = /mobile|android|webos|iphone|ipod|blackberry/i.test(userAgent)
-  const appStore = useAppStore(store)
+  const appStore = useAppStore()
 
   // 服务端设置设备类型和网站配置，存储到 state 中
   appStore.toggleDevice(isMobile ? DeviceEnum.Mobile : DeviceEnum.Desktop)
-  appStore.setWebConfig(webConfig)
+  appStore.webConfig = webConfig
 
   // 将状态序列化为 JSON 字符串
   const state = JSON.stringify(store.state.value)

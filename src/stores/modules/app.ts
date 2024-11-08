@@ -2,6 +2,7 @@ import { defineStore } from "pinia"
 import { ref } from "vue"
 
 import { DeviceEnum } from "@/configs/constants"
+import type { WebConfig } from "@/webConfigs"
 
 export const useAppStore = defineStore("app", () => {
   /** 设备类型 */
@@ -14,7 +15,7 @@ export const useAppStore = defineStore("app", () => {
   const showDebug = ref(false)
 
   /** 网站配置 */
-  const webConfig = ref()
+  const webConfig = ref<WebConfig>({} as WebConfig)
 
   /** 切换设备类型 */
   const toggleDevice = (type: DeviceEnum) => {
@@ -31,11 +32,6 @@ export const useAppStore = defineStore("app", () => {
     showDebug.value = type
   }
 
-  /** 设置 webConfig */
-  const setWebConfig = (config: any) => {
-    webConfig.value = config
-  }
-
   return {
     device,
     menuDrawerOpened,
@@ -43,7 +39,6 @@ export const useAppStore = defineStore("app", () => {
     webConfig,
     toggleDevice,
     toggleMenuDrawer,
-    toggleDebug,
-    setWebConfig
+    toggleDebug
   }
 })

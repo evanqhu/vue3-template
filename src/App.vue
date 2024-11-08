@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useHead } from "@unhead/vue"
-import { onBeforeMount, provide } from "vue"
+import { onBeforeMount, onMounted, provide } from "vue"
 import { useRoute } from "vue-router"
 
 import { $eventTrack, $logEvent } from "@/configs/constants"
@@ -33,13 +33,18 @@ useHead({
       crossorigin: "anonymous",
       async: true
     }
-  ],
-  link: [
-    {
-      rel: "icon",
-      href: import(`@/icons/logos/${webConfig.appLogo}.svg`)?.dafault
-    }
   ]
+})
+
+onMounted(async () => {
+  useHead({
+    link: [
+      {
+        rel: "icon",
+        href: (await import(`@/icons/logos/${webConfig.appLogo}.svg`)).default
+      }
+    ]
+  })
 })
 
 onBeforeMount(() => {
