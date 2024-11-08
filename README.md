@@ -5,7 +5,7 @@
 ### 🚀 特性
 
 - 移动端和 PC 端适配
-- 使用 `Unhead` 处理 `title` 和 `meta`（需完善）
+- 使用 `Unhead` 处理 `title` 和 `meta`
 - 安装 `Firebase`
 - 安装 `AdSense` 并封装组件 `Adsbygoogle`
 - 使用 `vue3-lazyload` 图片懒加载插件
@@ -14,9 +14,10 @@
 
 **待处理**
 
-- [ ] Winston 日志记录
-- [ ] Vite 图片压缩插件
-- [ ] Unhead 服务端渲染无效
+- [ ] 添加 Winston 日志记录
+- [ ] 添加 Vite 图片压缩插件
+- [ ] Unhead 服务端渲染无效，服务端返回的 HTML 文件中未包含 useHead 定义的内容
+- [ ] `App.vue` 中动态引入 icon 的方法，不确定是否合理
 
 ### ⚙️ 运行项目
 

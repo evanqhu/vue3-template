@@ -5,12 +5,11 @@ import { resourceList } from "@/configs/constants"
 import { useAppStore } from "@/stores/modules/app"
 
 defineOptions({
-  name: "MobileFooter"
+  name: "BaseFooter"
 })
 
 const appStore = useAppStore()
 const { webConfig } = appStore
-
 const router = useRouter()
 </script>
 

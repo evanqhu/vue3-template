@@ -20,9 +20,9 @@ const {
 </script>
 
 <template>
-  <main class="home">
+  <div class="home">
     <h1>This is the home page</h1>
-    <div>
+    <div class="demo">
       Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea quae excepturi unde laudantium
       repellendus voluptate voluptatibus, assumenda modi eum, voluptatum molestias nulla quia hic
       natus similique sapiente molestiae quis rerum? Lorem ipsum dolor, sit amet consectetur
@@ -37,5 +37,11 @@ const {
     </div>
     <Adsbygoogle :ads-attrs="adSense.home_1" />
     <Adsbygoogle :ads-attrs="adSense.home_2" />
-  </main>
+  </div>
 </template>
+
+<style lang="scss" scoped>
+.demo {
+  height: 2000px;
+}
+</style>

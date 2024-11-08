@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useAppStore } from "@/stores/modules/app"
 
-import Footer from "./components/Footer/index.vue"
+import Footer from "./components/Footer.vue"
 import Header from "./components/Header.vue"
 import MenuDrawer from "./components/MenuDrawer.vue"
 
