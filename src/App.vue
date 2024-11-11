@@ -41,7 +41,10 @@ useHead({
       rel: "icon",
       href: iconUrl
     }
-  ]
+  ],
+  bodyAttrs: {
+    class: webConfig.appLogo
+  }
 })
 
 // TODO 动态引入 icon

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { inject, nextTick, onActivated, onBeforeUnmount, onMounted, ref } from "vue"
+import { computed, inject, nextTick, onActivated, onBeforeUnmount, onMounted, ref } from "vue"
 import { useRoute } from "vue-router"
 
 import { $eventTrack, type eventTrackType } from "@/configs/constants"
@@ -24,6 +24,8 @@ const props = withDefaults(defineProps<Props>(), {
   customClass: ""
 })
 
+const route = useRoute()
+
 /** firebase 的函数 */
 const eventTrack = inject($eventTrack) as eventTrackType
 
@@ -32,8 +34,11 @@ const adsenseRef = ref<HTMLElement>()
 /** 是否显示广告区域 */
 const isAdFilled = ref(true)
 /** 是否进入调试模式 */
-const showDebug = ref(false)
-const route = useRoute()
+const isShowDebug = ref(false)
+/** 是否显示广告 */
+const isShowAd = computed(() => {
+  return Object.keys(props.adsAttrs).includes("class")
+})
 
 let observer: MutationObserver
 
@@ -66,7 +71,7 @@ const observeAdStatus = () => {
 /** 展示广告 */
 const showAd = async () => {
   await nextTick()
-  if (!Object.keys(props.adsAttrs).includes("class")) return
+  if (!isShowAd.value) return
   try {
     ;(window.adsbygoogle = window.adsbygoogle || []).push({})
     eventTrack("load_ads", "expose")
@@ -78,7 +83,7 @@ const showAd = async () => {
 onMounted(() => {
   // 开启广告调试模式
   if (route.query.db) {
-    showDebug.value = true
+    isShowDebug.value = true
   }
   showAd()
   observeAdStatus()
@@ -94,12 +99,12 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="ads-item">
+  <div v-if="isShowAd" class="ads-item">
     <div v-show="isAdFilled" class="ads-content" :class="customClass">
       <div class="ads-content-title">Advertisement</div>
       <ins ref="adsenseRef" v-bind="adsAttrs" />
     </div>
-    <div v-if="showDebug" class="ads-debug">
+    <div v-if="isShowDebug" class="ads-debug">
       {{ adsAttrs }}
     </div>
   </div>
