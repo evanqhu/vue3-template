@@ -141,6 +141,9 @@ onBeforeUnmount(() => {
   }
 }
 .ads-debug {
-  border: 1px solid red;
+  border: 2px solid red;
+  margin-bottom: 2px;
+  background-color: #ffe786;
+  color: #000;
 }
 </style>

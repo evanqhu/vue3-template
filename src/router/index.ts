@@ -19,11 +19,6 @@ export const createRouter = (type: "client" | "server"): Router =>
             name: "home",
             path: "",
             component: () => import("@/views/HomeView.vue")
-          },
-          {
-            path: "/about",
-            name: "about",
-            component: () => import("@/views/AboutView.vue")
           }
         ]
       },

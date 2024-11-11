@@ -17,8 +17,6 @@ const appStore = useAppStore()
 const {
   webConfig: { adSense }
 } = appStore
-
-const demo = "daily-forecast"
 </script>
 
 <template>
