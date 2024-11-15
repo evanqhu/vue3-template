@@ -16,6 +16,7 @@ const defaultConfig = {
     measurementId: ""
   },
   adSense: {
+    // NOTE 这里的 client 只需要写 script 中client= 后面的内容，千万不要写成全部的 URL
     client: "ca-google",
     ads: "template ads",
     home_1: {
