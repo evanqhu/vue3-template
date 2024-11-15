@@ -165,6 +165,8 @@ CDN 部署地址：修改 `.env` 文件中的 `VITE_PUBLIC_PATH`
 - 在 `App.vue` 中添加全局的 `head` 信息
 
 ```javascript
+const iconUrl = ref("")
+
 useHead({
   title: webConfig.appTitle,
   meta: [
@@ -179,19 +181,18 @@ useHead({
       crossorigin: "anonymous",
       async: true
     }
+  ],
+  link: [
+    {
+      rel: "icon",
+      href: iconUrl
+    }
   ]
 })
 
 // 动态加载 icon
 onMounted(async () => {
-  useHead({
-    link: [
-      {
-        rel: "icon",
-        href: (await import(`@/icons/logos/${webConfig.appLogo}.svg`)).default
-      }
-    ]
-  })
+  iconUrl.value = (await import(`@/icons/logos/${webConfig.appLogo}.svg`)).default
 })
 ```
 
