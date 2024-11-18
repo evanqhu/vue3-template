@@ -13,14 +13,15 @@ import webConfigs from "@/webConfigs"
 export async function render(url: string, host: string, ssrManifest: string, req: Request) {
   const manifest: Record<string, string[]> = ssrManifest && JSON.parse(ssrManifest) // 将字符串格式的 manifest 转换为对象
   // 根据请求的 host 获取对应的网站配置
-  const webConfig = webConfigs[host]
+  const webConfig = webConfigs[host] || webConfigs.localhost
 
   const { app, store, router, head } = await createApp("server")
 
   // 根据请求头判断设备类型并存储状态
   const userAgent = req.headers["user-agent"] || "mobile"
   const isMobile = /mobile|android|webos|iphone|ipod|blackberry/i.test(userAgent)
-  const appStore = useAppStore()
+  // NOTE 这里必须传入 store，否则会导致状态污染
+  const appStore = useAppStore(store)
 
   // 服务端设置设备类型和网站配置，存储到 state 中
   appStore.toggleDevice(isMobile ? DeviceEnum.Mobile : DeviceEnum.Desktop)
