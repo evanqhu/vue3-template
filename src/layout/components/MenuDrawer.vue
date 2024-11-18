@@ -41,7 +41,6 @@ const handleItemClick = (item: { name: string; path: string }) => {
   background: #000;
   opacity: 0.3;
   width: 100%;
-  // height: 100%;
   top: 50px;
   bottom: 0;
   position: absolute;
@@ -85,10 +84,6 @@ const handleItemClick = (item: { name: string; path: string }) => {
 }
 
 @media (min-width: 768px) {
-  .drawer-bg {
-    // display: none;
-  }
-
   .menu-drawer {
     width: 360px;
     right: 0;
