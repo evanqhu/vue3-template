@@ -43,7 +43,7 @@ useHead({
     }
   ],
   bodyAttrs: {
-    class: webConfig.appLogo
+    class: webConfig.bodyStyleName || ""
   }
 })
 

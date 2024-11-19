@@ -5,6 +5,7 @@ const defaultConfig = {
   appEmail: "templateweb.support@gmail.com",
   appUrl: "templateweb.com",
   appLogo: "template",
+  bodyStyleName: "template",
   aboutUs: `The aboutUs of template web.`,
   firebase: {
     apiKey: "",
