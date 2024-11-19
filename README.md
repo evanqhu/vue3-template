@@ -11,11 +11,11 @@
 - 使用 `vue3-lazyload` 图片懒加载插件
 - 使用 `useDevice` 判断设备类型，设备类型存储在 `store` 中
 - 使用 `webConfigs.ts` 配置文件同时部署多个域名
+- 使用 `vite-plugin-svg-icons` 处理打包图片压缩
 
 **待处理**
 
 - [ ] 添加 Winston 日志记录
-- [ ] 添加 Vite 图片压缩插件
 - [ ] Unhead 服务端渲染无效，服务端返回的 HTML 文件中未包含 useHead 定义的内容
 - [ ] `App.vue` 中动态引入 icon 的方法，不确定是否合理
 - [ ] 将首屏关键样式内联到 style 标签中
@@ -153,9 +153,20 @@ CDN 部署地址：修改 `.env` 文件中的 `VITE_PUBLIC_PATH`
 项目中使用 `vue3-lazyload` 包实现图片懒加载，使用方法如下：
 
 - 将 `img` 标签的 `src` 属性换成 `v-lazy` 即可
+- v-lazy 的路径必须是浏览器可以访问的完整路径
+- 有两种书写路径的方法
+  - 1. 将图片放在 public 文件夹下，使用绝对路径
+  - 2. 使用 import 动态引入图片
 
 ```html
-<img v-lazy="`/src/assets/images/${demo}.webp`" alt="" />
+<script>
+  import imgURL from "@/assets/images/xxx.jpg"
+</script>
+
+<!-- 绝对路径，图片放在 public 文件夹下 -->
+<img v-lazy="'/demo.jpg'" alt="" />
+<!-- 动态引入 -->
+<img v-lazy="imgURL" alt="" />
 ```
 
 ### ⚙️ 处理 head 信息

@@ -5,6 +5,7 @@ import vueJsx from "@vitejs/plugin-vue-jsx"
 import autoprefixer from "autoprefixer"
 import path from "path"
 import { defineConfig, loadEnv } from "vite"
+import { ViteImageOptimizer } from "vite-plugin-image-optimizer"
 import { createSvgIconsPlugin } from "vite-plugin-svg-icons"
 
 // @see: https://cn.vitejs.dev/config
@@ -38,12 +39,28 @@ export default defineConfig(({ mode }) => {
     plugins: [
       vue(),
       vueJsx(),
+      // svg 雪碧图
       createSvgIconsPlugin({
         iconDirs: [
           path.resolve(process.cwd(), "src/icons/svg"),
           path.resolve(process.cwd(), "src/icons/logos")
         ],
         symbolId: "icon-[dir]-[name]"
+      }),
+      // 图片打包压缩
+      ViteImageOptimizer({
+        jpg: {
+          quality: 80
+        },
+        jpeg: {
+          quality: 80
+        },
+        png: {
+          quality: 80
+        },
+        webp: {
+          quality: 80
+        }
       })
     ],
     // 混淆器

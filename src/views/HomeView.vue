@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useHead } from "@unhead/vue"
 
+import imgURL from "@/assets/images/demo.jpg"
 import { useAppStore } from "@/stores/modules/app"
 
 useHead({
@@ -35,8 +36,9 @@ const {
       impedit quis eius mollitia qui sed suscipit temporibus eveniet unde modi eos nesciunt odio
       veniam.
     </div>
-    <Adsbygoogle :ads-attrs="adSense.home_1" />
-    <Adsbygoogle :ads-attrs="adSense.home_2" />
+    <img v-lazy="imgURL" alt="" width="100%" />
+    <!-- <Adsbygoogle :ads-attrs="adSense.home_1" />
+    <Adsbygoogle :ads-attrs="adSense.home_2" /> -->
   </div>
 </template>
 
