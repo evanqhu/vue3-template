@@ -280,4 +280,11 @@ provide($eventTrack, customEventTrack)
 ### ⚙️ 网站复制指南
 
 1. 修改 `webConfigs.ts` 文件
-1. 将 `logo` 放在 `icons/logos` 文件夹下，`svg` 格式，命名参考 `webConfigs.ts` 中的 `appLogo` 字段
+2. 将 `logo` 放在 `icons/logos` 文件夹下，`svg` 格式，命名参考 `webConfigs.ts` 中的 `appLogo` 字段
+
+### ⚙️ 其他
+
+- 一个网站项目，建一个仓库，命名如（ptc_ssr_star），第一版网站放在 main 分支，之后相同 UI 的复制网站直接在 main 分支上添加
+- STMP 服务命名如（ptc-nch-star）
+- 不同 UI 的网站，建立新分支，命名为 style1、style2 等
+- 新分支对应的 STMP 服务命名如 （ptc-nch-star-style1、ptc-nch-star-style2 等）
