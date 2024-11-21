@@ -241,13 +241,34 @@ provide($eventTrack, customEventTrack)
 
 - 配置文件在 `src/webConfigs.ts` 中
 
+  ```javascript
+  adSense: {
+      // NOTE 这里的 client 只需要写 script 中 client= 后面的内容
+      //（如：ca-pub-8158555231596181），千万不要写成全部的 URL
+      client: "ca-google", // 必填
+      ads: "template ads.txt",
+      home_1: {
+        // 广告位信息只需要填 slot 就行，其他的都给了默认值
+        "data-ad-slot": "1468595611",
+      },
+      home_2: {
+        "data-ad-slot": "9290411161",
+        // class: "adsbygoogle",
+        // style: "display:block",
+        // "data-ad-client": "ca-pub-8158555231596181",
+        // "data-ad-format": "auto",
+        // "data-full-width-responsive": "true"
+      }
+    }
+  ```
+
 - 在 `App.vue` 中通过 `useHead` 注入广告脚本
 
   ```javascript
   useHead({
     script: [
       {
-        src: `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${webConfig.adSense.scriptUrl}`,
+        src: `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${webConfig.adSense.client}`,
         crossorigin: "anonymous",
         async: true
       }

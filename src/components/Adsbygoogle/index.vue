@@ -3,6 +3,7 @@ import { computed, inject, nextTick, onActivated, onBeforeUnmount, onMounted, re
 import { useRoute } from "vue-router"
 
 import { $eventTrack, type eventTrackType } from "@/configs/constants"
+import { useAppStore } from "@/stores/modules/app"
 
 defineOptions({
   name: "AdsbyGoogle"
@@ -25,6 +26,8 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const route = useRoute()
+const appStore = useAppStore()
+const { webConfig } = appStore
 
 /** firebase 的函数 */
 const eventTrack = inject($eventTrack) as eventTrackType
@@ -37,7 +40,20 @@ const isAdFilled = ref(true)
 const isShowDebug = ref(false)
 /** 是否显示广告 */
 const isShowAd = computed(() => {
-  return Object.keys(props.adsAttrs).includes("class")
+  return Object.keys(props.adsAttrs).includes("data-ad-slot")
+})
+const adsAttrsFull = computed(() => {
+  return Object.assign(
+    // 默认属性
+    {
+      class: "adsbygoogle",
+      style: "display:block",
+      "data-ad-format": "auto",
+      "data-full-width-responsive": "true",
+      "data-ad-client": webConfig.adSense?.client
+    },
+    props.adsAttrs
+  )
 })
 
 let observer: MutationObserver
@@ -102,10 +118,10 @@ onBeforeUnmount(() => {
   <div v-if="isShowAd" class="ads-item">
     <div v-show="isAdFilled" class="ads-content" :class="customClass">
       <div class="ads-content-title">Advertisement</div>
-      <ins ref="adsenseRef" v-bind="adsAttrs" />
+      <ins ref="adsenseRef" v-bind="adsAttrsFull" />
     </div>
     <div v-if="isShowDebug" class="ads-debug">
-      {{ adsAttrs }}
+      {{ adsAttrsFull }}
     </div>
   </div>
 </template>

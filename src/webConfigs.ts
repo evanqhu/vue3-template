@@ -17,25 +17,12 @@ const defaultConfig = {
     measurementId: ""
   },
   adSense: {
-    // NOTE 这里的 client 只需要写 script 中client= 后面的内容，千万不要写成全部的 URL
+    // NOTE 这里的 client 只需要写 script 中 client= 后面的内容（如：ca-pub-8158555231596181），千万不要写成全部的 URL
+    // 广告位信息只需要传递  slot 即可，其他的都在广告组件中给了默认值
     client: "ca-google",
-    ads: "template ads",
-    home_1: {
-      class: "adsbygoogle",
-      style: "display:block",
-      "data-ad-client": "ca-pub-8158555231596181",
-      "data-ad-slot": "1468595611",
-      "data-ad-format": "auto",
-      "data-full-width-responsive": "true"
-    },
-    home_2: {
-      class: "adsbygoogle",
-      style: "display:block",
-      "data-ad-client": "ca-pub-8158555231596181",
-      "data-ad-slot": "9290411161",
-      "data-ad-format": "auto",
-      "data-full-width-responsive": "true"
-    }
+    ads: "template ads.txt",
+    home_1: { "data-ad-slot": "1468595611" },
+    home_2: { "data-ad-slot": "9290411161" }
   }
 }
 
