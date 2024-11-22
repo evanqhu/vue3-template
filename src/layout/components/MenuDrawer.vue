@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { watch } from "vue"
 import { useRouter } from "vue-router"
 
 import { resourceList } from "@/configs/constants"
@@ -13,13 +14,20 @@ const handleItemClick = (item: { name: string; path: string }) => {
   router.push(item.path)
   toggleMenuDrawer(false)
 }
+
+watch(
+  () => appStore.menuDrawerOpened,
+  (val) => {
+    document.body.style.overflow = val ? "hidden" : "auto"
+  }
+)
 </script>
 
 <template>
   <div v-if="appStore.menuDrawerOpened" class="drawer-bg" @click="toggleMenuDrawer(false)"></div>
   <div
     :class="['menu-drawer', { opened: appStore.menuDrawerOpened }]"
-    :style="{ transform: 'translateY(-120%)' }"
+    :style="{ transform: 'translateY(-100%)' }"
   >
     <div class="resource">Resource</div>
     <ul class="menu-list">
@@ -43,12 +51,12 @@ const handleItemClick = (item: { name: string; path: string }) => {
   width: 100%;
   top: 50px;
   bottom: 0;
-  position: absolute;
+  position: fixed;
   z-index: 999;
 }
 
 .menu-drawer {
-  position: absolute;
+  position: fixed;
   top: 50px;
   z-index: 999;
   width: 100%;

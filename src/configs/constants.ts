@@ -15,22 +15,22 @@ export const $eventTrack = Symbol() as InjectionKey<eventTrackType>
 
 /** Resource */
 export const resourceList = [
-  {
-    name: "Daily horoscope",
-    path: "/"
-  },
-  {
-    name: "Weekly horoscope",
-    path: "/weekly-horoscope"
-  },
-  {
-    name: "Monthly horoscope",
-    path: "/monthly-horoscope"
-  },
-  {
-    name: "Yearly horoscope",
-    path: "/yearly-horoscope"
-  },
+  // {
+  //   name: "Daily horoscope",
+  //   path: "/"
+  // },
+  // {
+  //   name: "Weekly horoscope",
+  //   path: "/weekly-horoscope"
+  // },
+  // {
+  //   name: "Monthly horoscope",
+  //   path: "/monthly-horoscope"
+  // },
+  // {
+  //   name: "Yearly horoscope",
+  //   path: "/yearly-horoscope"
+  // },
   {
     name: "Terms of service",
     path: "/terms-of-service"

@@ -15,26 +15,30 @@ const router = useRouter()
 
 <template>
   <footer class="footer">
-    <div class="footer-item">
-      <p class="item-title">About us</p>
-      <p class="item-content">{{ webConfig.aboutUs }}</p>
-    </div>
-    <div class="footer-item resource">
-      <p class="item-title">Resource</p>
-      <p
-        v-for="(item, index) in resourceList"
-        :key="index"
-        class="item-content"
-        @click="router.push(item.path)"
-      >
-        {{ item.name }}
-      </p>
-    </div>
-    <div class="footer-item">
-      <p class="item-title">Contact us</p>
-      <a class="item-content" :href="`mailto:${webConfig.appEmail}`">
-        {{ webConfig.appEmail }}
-      </a>
+    <div class="pc-top">
+      <div class="footer-item about-us">
+        <p class="item-title">About us</p>
+        <p class="item-content">{{ webConfig.aboutUs }}</p>
+      </div>
+      <div class="pc-right">
+        <div class="footer-item resource">
+          <p class="item-title">Resource</p>
+          <p
+            v-for="(item, index) in resourceList"
+            :key="index"
+            class="item-content"
+            @click="router.push(item.path)"
+          >
+            {{ item.name }}
+          </p>
+        </div>
+        <div class="footer-item">
+          <p class="item-title">Contact us</p>
+          <a class="item-content" :href="`mailto:${webConfig.appEmail}`">
+            {{ webConfig.appEmail }}
+          </a>
+        </div>
+      </div>
     </div>
     <div class="footer-item copyright">
       <p class="item-content">
@@ -52,16 +56,14 @@ const router = useRouter()
   flex-direction: column;
   background: #333;
   color: #fff;
+  --pc-margin: calc((100% - 1200px) / 2);
 
   .footer-item {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 16px 24px;
-
-    &:not(:last-of-type) {
-      border-bottom: 1px solid #434343;
-    }
+    border-bottom: 1px solid #434343;
 
     .item-title {
       font-weight: 600;
@@ -74,6 +76,7 @@ const router = useRouter()
       font-size: 14px;
     }
 
+    // 资源
     &.resource {
       .item-content {
         @include hover-effect(1);
@@ -84,12 +87,48 @@ const router = useRouter()
       }
     }
 
+    // 版权声明
     &.copyright {
       color: rgba(255, 255, 255, 0.6);
 
       .item-content {
         font-size: 10px;
         line-height: 18px;
+      }
+    }
+  }
+
+  // PC 端布局
+  @media (min-width: 1200px) {
+    .pc-top {
+      position: relative;
+      width: 100%;
+      display: flex;
+      padding: 0 var(--pc-margin);
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: var(--pc-margin);
+        right: var(--pc-margin);
+        height: 1px;
+        background-color: #434343;
+      }
+
+      .about-us {
+        width: 50%;
+        border-bottom: none;
+        align-items: flex-start;
+        padding: 16px 120px;
+      }
+      .pc-right {
+        width: 50%;
+
+        .footer-item {
+          border-bottom: none;
+          align-items: flex-start;
+          padding: 16px 120px;
+        }
       }
     }
   }
