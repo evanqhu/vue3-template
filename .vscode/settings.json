@@ -9,5 +9,6 @@
   },
   "[typescript]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-  }
+  },
+  "Codegeex.RepoIndex": true
 }
