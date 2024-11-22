@@ -11,9 +11,6 @@ export const useAppStore = defineStore("app", () => {
   /** MenuDrawer 状态 */
   const menuDrawerOpened = ref(false)
 
-  /** 调试广告模式 */
-  const showDebug = ref(false)
-
   /** 网站配置 */
   const webConfig = ref<WebConfig>({} as WebConfig)
 
@@ -27,18 +24,11 @@ export const useAppStore = defineStore("app", () => {
     menuDrawerOpened.value = type
   }
 
-  /** 切换 debug 模式 */
-  const toggleDebug = (type: boolean) => {
-    showDebug.value = type
-  }
-
   return {
     device,
     menuDrawerOpened,
-    showDebug,
     webConfig,
     toggleDevice,
-    toggleMenuDrawer,
-    toggleDebug
+    toggleMenuDrawer
   }
 })

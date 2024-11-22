@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useHead } from "@unhead/vue"
-import { onBeforeMount, onMounted, provide, ref } from "vue"
-import { useRoute } from "vue-router"
+import { onMounted, provide, ref } from "vue"
 
 import { $eventTrack, $logEvent } from "@/configs/constants"
 import { useFirebase } from "@/hooks/useFirebase"
@@ -9,7 +8,6 @@ import { useResize } from "@/hooks/useResize"
 import { useAppStore } from "@/stores/modules/app"
 
 useResize()
-const route = useRoute()
 const appStore = useAppStore()
 const { webConfig } = appStore
 
@@ -50,13 +48,6 @@ useHead({
 // TODO 动态引入 icon
 onMounted(async () => {
   iconUrl.value = (await import(`@/icons/logos/${webConfig.appLogo}.svg`)).default
-})
-
-onBeforeMount(() => {
-  // 开启广告调试模式
-  if (route.query.db) {
-    appStore.toggleDebug(true)
-  }
 })
 </script>
 
