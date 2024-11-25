@@ -24,7 +24,7 @@
 
 Node 版本：v18+
 
-```ini
+```bash
 "scripts": {
   # 启动开发服务器
   "dev": "node server",
