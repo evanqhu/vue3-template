@@ -7,7 +7,7 @@
 - 移动端和 PC 端适配
 - 使用 `Unhead` 处理 `title` 和 `meta`
 - 安装 `Firebase`
-- 安装 `AdSense` 并封装组件 `Adsbygoogle`
+- 安装 `AdSense` 并封装组件 `AdsbyGoogle`
 - 使用 `vue3-lazyload` 图片懒加载插件
 - 使用 `useDevice` 判断设备类型，设备类型存储在 `store` 中
 - 使用 `webConfigs.ts` 配置文件同时部署多个域名
@@ -229,7 +229,7 @@ useHead({
 
 - 配置文件在 `src/webConfigs.ts` 中
 - Firebase 相关代码集成在 `@/hooks/useFirebase.ts` 中
-- 在 `App.vue` 中使用 `useFirebase()` 即可，然后通过 provide 将函数传递给后代的 `Adsbygoogle` 组件
+- 在 `App.vue` 中使用 `useFirebase()` 即可，然后通过 provide 将函数传递给后代的 `AdsbyGoogle` 组件
 
 ```javascript
 const { customLogEvent, customEventTrack } = useFirebase()
@@ -279,10 +279,10 @@ provide($eventTrack, customEventTrack)
 - 在组件中使用广告组件
 
   ```vue
-  <Adsbygoogle :adsAttrs="adSense.home_1" />
+  <AdsbyGoogle :adsAttrs="adSense.home_1" />
   ```
 
-> `Adsbygoogle` 组件已全局注册，无需引入即可使用
+> `AdsbyGoogle` 组件已全局注册，无需引入即可使用
 
 ### ⚙️ 广告调试
 

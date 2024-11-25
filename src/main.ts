@@ -4,7 +4,7 @@ import { createSSRApp } from "vue"
 import VueLazyLoad from "vue3-lazyload"
 
 import App from "@/App.vue"
-import Adsbygoogle from "@/components/Adsbygoogle/index.vue"
+import AdsbyGoogle from "@/components/AdsbyGoogle/index.vue"
 import { loadSvg } from "@/icons"
 import { createRouter } from "@/router"
 import { createStore } from "@/stores"
@@ -35,7 +35,7 @@ export async function createApp(type: "client" | "server") {
 
   // 全局注册组件 AdSense
   // eslint-disable-next-line
-  app.component("Adsbygoogle", Adsbygoogle)
+  app.component("AdsbyGoogle", AdsbyGoogle)
 
   return { app, store, router, head }
 }
