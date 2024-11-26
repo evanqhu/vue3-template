@@ -31,5 +31,5 @@ const {
 </script>
 
 <template>
-  <component :is="isMobile ? HomeMobile : HomeDesktop" :adSense="adSense" :imgURL="imgURL" />
+  <component :is="isMobile ? HomeMobile : HomeDesktop" :ad-sense="adSense" :img-url="imgURL" />
 </template>
