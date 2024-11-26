@@ -10,7 +10,7 @@
 - 安装 `AdSense` 并封装组件 `AdsbyGoogle`
 - 使用 `vue3-lazyload` 图片懒加载插件
 - 使用 `useDevice` 判断设备类型，设备类型存储在 `store` 中
-- 使用 `webConfigs.ts` 配置文件同时部署多个域名
+- 使用 `web-configs.ts` 配置文件同时部署多个域名
 - 使用 `vite-plugin-svg-icons` 处理打包图片压缩
 
 **待处理**
@@ -252,7 +252,7 @@ useHead({
 
 ### ⚙️ Firebase 相关
 
-- 配置文件在 `src/webConfigs.ts` 中
+- 配置文件在 `src/web-configs.ts` 中
 - Firebase 相关代码集成在 `@/hooks/useFirebase.ts` 中
 - 在 `App.vue` 中使用 `useFirebase()` 即可，然后通过 provide 将函数传递给后代的 `AdsbyGoogle` 组件
 
@@ -264,7 +264,7 @@ provide($eventTrack, customEventTrack)
 
 ### ⚙️ AdSense 相关
 
-- 配置文件在 `src/webConfigs.ts` 中
+- 配置文件在 `src/web-configs.ts` 中
 
   ```javascript
   adSense: {
@@ -325,8 +325,8 @@ provide($eventTrack, customEventTrack)
 
 ### ⚙️ 网站复制指南
 
-1. 修改 `webConfigs.ts` 文件
-2. 将 `logo` 放在 `icons/logos` 文件夹下，`svg` 格式，命名参考 `webConfigs.ts` 中的 `appLogo` 字段
+1. 修改 `web-configs.ts` 文件
+2. 将 `logo` 放在 `icons/logos` 文件夹下，`svg` 格式，命名参考 `web-configs.ts` 中的 `appLogo` 字段
 
 ### ⚙️ 其他
 

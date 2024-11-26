@@ -45,7 +45,7 @@ app.get("/ads.txt", async (req, res) => {
     const host = getHost(req.headers.host.split(":")[0]) // 获取请求的主机名
     let content
     if (!isProduction) {
-      content = (await vite.ssrLoadModule("/src/webConfigs.ts")).default[host].adSense.ads
+      content = (await vite.ssrLoadModule("/src/web-configs.ts")).default[host].adSense.ads
     } else {
       content = (await import("../dist/server/entry-server.js")).getWebConfigs()[host].adSense.ads
     }

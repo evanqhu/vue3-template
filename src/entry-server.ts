@@ -8,7 +8,7 @@ import { renderToWebStream } from "vue/server-renderer"
 import { DeviceEnum } from "@/configs/constants"
 import { createApp } from "@/main"
 import { useAppStore } from "@/stores/modules/app"
-import webConfigs from "@/webConfigs"
+import webConfigs from "@/web-configs"
 
 export async function render(url: string, host: string, ssrManifest: string, req: Request) {
   const manifest: Record<string, string[]> = ssrManifest && JSON.parse(ssrManifest) // 将字符串格式的 manifest 转换为对象

@@ -2,7 +2,7 @@ import { defineStore } from "pinia"
 import { ref } from "vue"
 
 import { DeviceEnum } from "@/configs/constants"
-import type { WebConfig } from "@/webConfigs"
+import type { WebConfig } from "@/web-configs"
 
 export const useAppStore = defineStore("app", () => {
   /** 设备类型 */
