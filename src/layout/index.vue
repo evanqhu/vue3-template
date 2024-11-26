@@ -13,13 +13,11 @@ defineOptions({
   <div class="app-container">
     <Header />
     <RouterView v-slot="{ Component }">
-      <Transition name="fade" mode="out-in">
-        <KeepAlive>
-          <main class="app-main">
-            <component :is="Component" />
-          </main>
-        </KeepAlive>
-      </Transition>
+      <KeepAlive>
+        <main class="app-main">
+          <component :is="Component" />
+        </main>
+      </KeepAlive>
     </RouterView>
     <Footer />
   </div>
@@ -37,14 +35,4 @@ defineOptions({
     margin: 0 auto;
   }
 }
-// 组件切换动画
-// .fade-enter-active,
-// .fade-leave-active {
-//   transition: opacity 0.5s ease;
-// }
-
-// .fade-enter-from,
-// .fade-leave-to {
-//   opacity: 0;
-// }
 </style>

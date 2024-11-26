@@ -27,7 +27,7 @@ watch(
   <div v-if="appStore.menuDrawerOpened" class="drawer-bg" @click="toggleMenuDrawer(false)"></div>
   <div
     :class="['menu-drawer', { opened: appStore.menuDrawerOpened }]"
-    :style="{ transform: 'translateY(-100%)' }"
+    :style="{ transform: 'translateY(-120%)' }"
   >
     <div class="resource">Resource</div>
     <ul class="menu-list">

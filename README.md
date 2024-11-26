@@ -66,6 +66,31 @@ Node 版本：v18+
 
 ### ⚙️ 移动端和 PC 端适配
 
+#### 建议方案
+
+还是将 PC 和 Mobile 的视图分开
+
+`views/home/index.vue`
+
+```html
+<script setup lang="ts">
+  import { useDevice } from "@/hooks/useDevice"
+
+  import DesktopFooter from "./modules/desktop.vue"
+  import MobileFooter from "./modules/mobile.vue"
+
+  defineOptions({
+    name: "BaseFooter"
+  })
+
+  const { isMobile } = useDevice()
+</script>
+
+<template>
+  <component :is="isMobile ? MobileFooter : DesktopFooter" />
+</template>
+```
+
 #### 逻辑适配
 
 在组件中使用 `useDevice` 获取当前设备状态，进行逻辑判断

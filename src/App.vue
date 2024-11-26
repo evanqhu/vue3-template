@@ -54,3 +54,10 @@ onMounted(async () => {
 <template>
   <RouterView />
 </template>
+
+<style lang="scss" scoped>
+.loading {
+  display: flex;
+  place-items: center;
+}
+</style>
