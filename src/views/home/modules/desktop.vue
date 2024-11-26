@@ -3,10 +3,12 @@ defineOptions({
   name: "HomeDesktop"
 })
 
-defineProps({
-  adSense: Object,
-  imgUrl: String
-})
+interface Props {
+  adSense: WebConfig["adSense"]
+  imgUrl: string
+}
+
+defineProps<Props>()
 </script>
 
 <template>

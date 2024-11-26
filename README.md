@@ -91,6 +91,32 @@ Node 版本：v18+
 </template>
 ```
 
+`views/home/modules/mobile.vue`
+
+```html
+<script setup lang="ts">
+  defineOptions({
+    name: "HomeMobile"
+  })
+
+  interface Props {
+    adSense: WebConfig["adSense"]
+    imgUrl: string
+  }
+
+  defineProps<Props>()
+</script>
+
+<template>
+  <div class="home">
+    <h1>This is the home mobile page</h1>
+    <img v-lazy="imgUrl" alt="" width="100%" />
+    <AdsbyGoogle :ads-attrs="adSense.home_1" />
+    <AdsbyGoogle :ads-attrs="adSense.home_2" />
+  </div>
+</template>
+```
+
 #### 逻辑适配
 
 在组件中使用 `useDevice` 获取当前设备状态，进行逻辑判断
