@@ -188,8 +188,6 @@ onBeforeMount(async () => {
 })
 
 onBeforeUnmount(() => {
-  // 移除窗口尺寸变化监听器
-  window.removeEventListener("resize", setImagesPosition)
   // 销毁交叉观察器
   intersectionOb.disconnect()
   // 销毁尺寸观察器
