@@ -11,7 +11,8 @@
 - 使用 `vue3-lazyload` 图片懒加载插件
 - 使用 `useDevice` 判断设备类型，设备类型存储在 `store` 中
 - 使用 `web-configs.ts` 配置文件同时部署多个域名
-- 使用 `vite-plugin-svg-icons` 处理打包图片压缩
+- 使用 `vite-plugin-svg-icons` 处理图标
+- 使用 `vite-plugin-image-optimizer` 处理打包图片压缩
 
 **待处理**
 
