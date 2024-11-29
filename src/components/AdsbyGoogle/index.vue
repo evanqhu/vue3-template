@@ -34,14 +34,16 @@ const eventTrack = inject($eventTrack) as eventTrackType
 
 /** ins 标签模板引用 */
 const adsenseRef = ref<HTMLElement>()
-/** 是否显示广告区域 */
-const isAdFilled = ref(true)
-/** 是否进入调试模式 */
-const isShowDebug = ref(false)
-/** 是否显示广告 */
+/** 是否显示广告（如果广告位配置对象不含 data-ad-slot 属性则不显示广告） */
 const isShowAd = computed(() => {
   return Object.keys(props.adsAttrs).includes("data-ad-slot")
 })
+/** 广告是否填充成功（如果广告填充失败，则隐藏广告内容及标题） */
+const isAdFilled = ref(true)
+/** 是否进入调试模式 */
+const isShowDebug = ref(false)
+
+/** 完整的广告位配置对象 */
 const adsAttrsFull = computed(() => {
   return Object.assign(
     // 默认属性
@@ -86,8 +88,8 @@ const observeAdStatus = () => {
 
 /** 展示广告 */
 const showAd = async () => {
-  await nextTick()
   if (!isShowAd.value) return
+  await nextTick()
   try {
     ;(window.adsbygoogle = window.adsbygoogle || []).push({})
     eventTrack("load_ads", "expose")
@@ -134,6 +136,7 @@ onBeforeUnmount(() => {
   font-weight: 400;
   font-size: 16px;
 }
+
 .ads-content {
   border-bottom: 1px solid #c6c6c6;
   height: fit-content;
@@ -161,6 +164,7 @@ onBeforeUnmount(() => {
     }
   }
 }
+
 .ads-debug {
   border: 2px solid red;
   margin-bottom: 2px;
