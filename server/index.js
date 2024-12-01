@@ -42,7 +42,8 @@ if (!isProduction) {
 // 处理 ads.txt 请求
 app.get("/ads.txt", async (req, res) => {
   try {
-    const host = getHost(req.headers.host.split(":")[0]) // 获取请求的主机名
+    const originHost = req.headers.host.split(":")[0] || "localhost"
+    const host = originHost.replace(/^www\./, "")
     let content
     if (!isProduction) {
       content = (await vite.ssrLoadModule("/src/web-configs.ts")).default[host].adSense.ads
@@ -59,7 +60,8 @@ app.get("/ads.txt", async (req, res) => {
 // 处理所有的 HTML 请求
 app.use("*", async (req, res) => {
   try {
-    const host = getHost(req.headers.host.split(":")[0]) // 获取请求的主机名
+    const originHost = req.headers.host.split(":")[0] || "localhost"
+    const host = originHost.replace(/^www\./, "")
     const url = req.originalUrl.replace(base, "") // 获取请求的 URL，并去除基础路径
 
     let template
@@ -121,11 +123,3 @@ app.listen(port, "0.0.0.0", () => {
   console.log(`- Local:   http://localhost:${port}`)
   console.log(`- Network: http://${localIP}:${port}`) // 打印局域网内可访问的 IP 地址
 })
-
-function getHost(params) {
-  let host = params
-  if (params.startsWith("www")) {
-    host = params.replace("www.", "")
-  }
-  return host
-}
