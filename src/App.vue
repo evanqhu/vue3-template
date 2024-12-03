@@ -16,6 +16,7 @@ const { customLogEvent, customEventTrack } = useFirebase()
 provide($logEvent, customLogEvent)
 provide($eventTrack, customEventTrack)
 
+/** 网站图标 */
 const iconUrl = ref("")
 
 // 设置页面标题，加载广告脚本
@@ -37,7 +38,7 @@ useHead({
   link: [
     {
       rel: "icon",
-      href: iconUrl
+      href: iconUrl.value
     }
   ],
   bodyAttrs: {
@@ -45,7 +46,7 @@ useHead({
   }
 })
 
-// TODO 动态引入 icon
+// 动态引入 icon
 onMounted(async () => {
   iconUrl.value = (await import(`@/icons/logos/${webConfig.appLogo}.svg`)).default
 })
@@ -55,9 +56,4 @@ onMounted(async () => {
   <RouterView />
 </template>
 
-<style lang="scss" scoped>
-.loading {
-  display: flex;
-  place-items: center;
-}
-</style>
+<style lang="scss" scoped></style>
