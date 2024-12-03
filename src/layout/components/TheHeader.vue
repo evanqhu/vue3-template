@@ -3,10 +3,6 @@ import { useRouter } from "vue-router"
 
 import { useAppStore } from "@/stores/modules/app"
 
-defineOptions({
-  name: "BaseHeader"
-})
-
 const router = useRouter()
 const appStore = useAppStore()
 const { webConfig, toggleMenuDrawer } = appStore
@@ -39,7 +35,7 @@ const handleMenuClick = () => {
 .header {
   position: fixed;
   width: 100%;
-  height: 50px;
+  height: $header-height;
   display: flex;
   justify-content: space-between;
   padding: 0 15px;

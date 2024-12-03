@@ -1,16 +1,12 @@
 <script setup lang="ts">
-import { useRouter } from "vue-router"
+import type { ResourceListType } from "@/configs/constants"
 
-import { resourceList } from "@/configs/constants"
-import { useAppStore } from "@/stores/modules/app"
+interface Props {
+  resourceList: ResourceListType
+  webConfig: WebConfig
+}
 
-defineOptions({
-  name: "BaseFooter"
-})
-
-const appStore = useAppStore()
-const { webConfig } = appStore
-const router = useRouter()
+withDefaults(defineProps<Props>(), {})
 </script>
 
 <template>
@@ -27,7 +23,7 @@ const router = useRouter()
             v-for="(item, index) in resourceList"
             :key="index"
             class="item-content"
-            @click="router.push(item.path)"
+            @click="$emit('resource-click', item.path)"
           >
             {{ item.name }}
           </p>
@@ -56,7 +52,7 @@ const router = useRouter()
   flex-direction: column;
   background: #333;
   color: #fff;
-  --pc-margin: calc((100% - 1200px) / 2);
+  $pc-margin: calc((100% - $container-width) / 2);
 
   .footer-item {
     display: flex;
@@ -98,37 +94,34 @@ const router = useRouter()
     }
   }
 
-  // PC 端布局
-  @media (min-width: 1200px) {
-    .pc-top {
-      position: relative;
-      width: 100%;
-      display: flex;
-      padding: 0 var(--pc-margin);
-      &::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: var(--pc-margin);
-        right: var(--pc-margin);
-        height: 1px;
-        background-color: #434343;
-      }
+  .pc-top {
+    position: relative;
+    width: 100%;
+    display: flex;
+    padding: 0 $pc-margin;
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: $pc-margin;
+      right: $pc-margin;
+      height: 1px;
+      background-color: #434343;
+    }
 
-      .about-us {
-        width: 50%;
+    .about-us {
+      width: 50%;
+      border-bottom: none;
+      align-items: flex-start;
+      padding: 16px 120px;
+    }
+    .pc-right {
+      width: 50%;
+
+      .footer-item {
         border-bottom: none;
         align-items: flex-start;
         padding: 16px 120px;
-      }
-      .pc-right {
-        width: 50%;
-
-        .footer-item {
-          border-bottom: none;
-          align-items: flex-start;
-          padding: 16px 120px;
-        }
       }
     }
   }

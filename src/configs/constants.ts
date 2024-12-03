@@ -40,3 +40,5 @@ export const resourceList = [
     path: "/privacy-policy"
   }
 ]
+
+export type ResourceListType = typeof resourceList

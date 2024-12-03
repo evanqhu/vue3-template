@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import Footer from "./components/Footer.vue"
-import Header from "./components/Header.vue"
 import MenuDrawer from "./components/MenuDrawer.vue"
+import TheFooter from "./components/TheFooter/index.vue"
+import TheHeader from "./components/TheHeader.vue"
 
 defineOptions({
   name: "BaseLayout"
@@ -11,7 +11,7 @@ defineOptions({
 <template>
   <MenuDrawer />
   <div class="app-container">
-    <Header />
+    <TheHeader />
     <RouterView v-slot="{ Component }">
       <KeepAlive>
         <main class="app-main">
@@ -19,7 +19,7 @@ defineOptions({
         </main>
       </KeepAlive>
     </RouterView>
-    <Footer />
+    <TheFooter />
   </div>
 </template>
 

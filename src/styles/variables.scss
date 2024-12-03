@@ -1,6 +1,13 @@
 // 全局变量和函数，通过 Vite 插件可以将其注入到全局
+
+// 暂时没用
 @function half($number) {
   @return #{calc($number / 2)}px; // 返回数字的一半，单位为 px
+}
+
+// px 转 rem
+@function rem($px, $base-font-size: 16) {
+  @return calc($px / $base-font-size) * 1rem;
 }
 
 // 鼠标悬浮样式，可以传入一个参数来控制放大的比例
@@ -15,3 +22,9 @@
     }
   }
 }
+
+// header 高度
+$header-height: 50px;
+
+// 版心宽度
+$container-width: 1200px;
