@@ -34,7 +34,6 @@ export async function createApp(type: "client" | "server") {
   loadSvg(app)
 
   // 全局注册组件 AdSense
-  // eslint-disable-next-line
   app.component("AdsbyGoogle", AdsbyGoogle)
 
   return { app, store, router, head }
