@@ -6,7 +6,7 @@ const defaultConfig = {
   appUrl: "templateweb.com",
   appLogo: "template",
   bodyStyleName: "template",
-  aboutUs: `The aboutUs of template web.`,
+  aboutUs: `The aboutUs of template web. lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem`,
   firebase: {
     apiKey: "",
     authDomain: "",
