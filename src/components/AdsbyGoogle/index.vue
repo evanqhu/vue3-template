@@ -1,5 +1,14 @@
 <script setup lang="ts">
-import { computed, inject, nextTick, onActivated, onBeforeUnmount, onMounted, ref } from "vue"
+import {
+  computed,
+  inject,
+  nextTick,
+  onActivated,
+  onBeforeUnmount,
+  onMounted,
+  ref,
+  useTemplateRef
+} from "vue"
 import { useRoute } from "vue-router"
 
 import { $eventTrack, type eventTrackType } from "@/configs/constants"
@@ -33,7 +42,7 @@ const { webConfig } = appStore
 const eventTrack = inject($eventTrack) as eventTrackType
 
 /** ins 标签模板引用 */
-const adsenseRef = ref<HTMLElement>()
+const adsenseRef = useTemplateRef<HTMLElement>("adsense-ref")
 /** 是否显示广告（如果广告位配置对象不含 data-ad-slot 属性则不显示广告） */
 const isShowAd = computed(() => {
   return Object.keys(props.adsAttrs).includes("data-ad-slot")
@@ -120,7 +129,7 @@ onBeforeUnmount(() => {
   <div v-if="isShowAd" class="ads-item">
     <div v-show="isAdFilled" class="ads-content" :class="customClass">
       <div class="ads-content-title">Advertisement</div>
-      <ins ref="adsenseRef" v-bind="adsAttrsFull" />
+      <ins ref="adsense-ref" v-bind="adsAttrsFull" />
     </div>
     <div v-if="isShowDebug" class="ads-debug">
       {{ adsAttrsFull }}
