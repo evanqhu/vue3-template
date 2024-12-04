@@ -43,7 +43,6 @@ Node 版本：v18+
   "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
   # 风格校验
   "format": "prettier --write src/",
-  "prepare": "husky",
   "lint-staged": "lint-staged",
   # 提交代码
   "commit": "bash pull-commit-push.sh"
