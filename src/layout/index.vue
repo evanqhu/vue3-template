@@ -30,8 +30,8 @@ defineOptions({
   position: relative;
 
   .app-main {
-    padding-top: 50px;
-    max-width: 1200px;
+    padding-top: $header-height;
+    max-width: $container-width;
     margin: 0 auto;
   }
 }

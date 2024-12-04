@@ -77,6 +77,7 @@ $pc-margin: calc((100% - $container-width) / 2);
 
     &__content {
       color: $text-color-muted;
+      line-height: 1.25;
     }
   }
 

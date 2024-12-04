@@ -49,7 +49,7 @@ watch(
   background: #000;
   opacity: 0.3;
   width: 100%;
-  top: 50px;
+  top: $header-height;
   bottom: 0;
   position: fixed;
   z-index: 999;
@@ -57,12 +57,12 @@ watch(
 
 .menu-drawer {
   position: fixed;
-  top: 50px;
+  top: $header-height;
   z-index: 999;
   width: 100%;
   background: #fff;
   transition: all 0.2s ease-in-out;
-  padding: 25px 18px 10px;
+  padding: 1.5rem 1rem 0.75rem;
 
   &.opened {
     transform: translateY(0) !important; // TODO 默认行内样式，防止闪烁
@@ -78,14 +78,14 @@ watch(
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 50px;
+      height: 3rem;
       font-weight: 600;
-      font-size: 14px;
+      font-size: 0.875rem;
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
 
       &:not(:last-of-type) {
-        border-bottom: 1px dashed #727272;
+        border-bottom: 1px solid #e6e8ea;
       }
     }
   }
@@ -99,9 +99,9 @@ watch(
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: $container-width) {
   .menu-drawer {
-    right: calc((100% - 1200px) / 2);
+    right: calc((100% - $container-width) / 2);
   }
 }
 </style>
