@@ -35,7 +35,7 @@ export async function render(url: string, host: string, ssrManifest: string, req
 
   const headPayload = await renderSSRHead(head)
 
-  const ctx: { modules?: string[] } = {}
+  const ctx: { modules?: string[] } = {} // SSR 上下文
   const stream = renderToWebStream(app, ctx)
 
   // Vite 生成的 SSR manifest 包含模块到 chunk/资源的映射，之后我们可以利用它来确定此请求需要预加载哪些文件
