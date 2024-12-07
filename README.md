@@ -17,7 +17,6 @@
 **待处理**
 
 - [ ] 添加 Winston 日志记录
-- [ ] Unhead 服务端渲染无效，服务端返回的 HTML 文件中未包含 useHead 定义的内容
 - [ ] 将首屏关键样式内联到 style 标签中
 
 ### ⚙️ 脚本介绍
@@ -274,6 +273,24 @@ useHead({
 ```
 
 > 目前存在一个问题，useHead 无法在服务端渲染，暂时不明原因
+
+已找到原因：在 `entry-server.ts` 中，需要先执行 `renderToWebStream` 函数，再执行 renderSSRHead 函数才行，需要先渲染 Vue
+
+```typescript
+export async function render(_url: string) {
+  const { app, head } = createApp()
+
+  await head.resolveTags()
+
+  const ctx = {}
+  const html = await renderToString(app, ctx)
+  // renderSSRHead 需要在 renderToString 之后
+  const payload = await renderSSRHead(head)
+  console.log("🚀🚀🚀 payload", payload)
+
+  return { html, payload }
+}
+```
 
 ### ⚙️ Firebase 相关
 
