@@ -12,7 +12,7 @@ import { createSvgIconsPlugin } from "vite-plugin-svg-icons"
 export default defineConfig(({ mode }) => {
   // 加载环境变量文件
   const viteEnv = loadEnv(mode, process.cwd())
-  const { VITE_PUBLIC_PATH } = viteEnv // 静态资源地址
+  const { VITE_PUBLIC_PATH, VITE_DROP_CONSOLE } = viteEnv // 静态资源地址
 
   return {
     // 打包时根据实际情况修改 base
@@ -30,8 +30,7 @@ export default defineConfig(({ mode }) => {
       },
       preprocessorOptions: {
         scss: {
-          additionalData: `@import "@/styles/variables.scss";`, // 全局注入样式文件，包含全局样式变量和函数
-          api: "modern-compiler" // 关闭控制台【Deprecation [legacy-js-api]: The legacy JS API is deprecated and will be removed in Dart Sass 2.0.0.】警告
+          additionalData: `@import "@/styles/variables.scss";` // 全局注入样式文件，包含全局样式变量和函数
         }
       }
     },
@@ -69,7 +68,7 @@ export default defineConfig(({ mode }) => {
         ? undefined
         : {
             // 打包时移除 console.log
-            pure: ["console.log"],
+            pure: VITE_DROP_CONSOLE === "true" ? ["console.log"] : [],
             // 打包时移除 debugger
             drop: ["debugger"],
             // 打包时移除所有注释
