@@ -23,44 +23,32 @@
 
 Node 版本：v18+
 
-```bash
-"scripts": {
-  # 启动开发服务器
-  "dev": "node server",
-  # 生产构建
-  "build": "run-p type-check \"build:client {@}\" \"build:server {@}\" --",
-  # 开发构建
-  "build:dev": "run-s \"build --mode development\"",
-  # 测试构建
-  "build:stage": "run-s \"build --mode staging\"",
-  "build:client": "vite build --ssrManifest --outDir dist/client",
-  "build:server": "vite build --ssr src/entry-server.ts --outDir dist/server",
-  "type-check": "vue-tsc --build --force",
-  # 预览（需在打包后执行）
-  "preview": "cross-env NODE_ENV=production node server",
-  # 语法校验
-  "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-  # 风格校验
-  "format": "prettier --write src/",
-  "lint-staged": "lint-staged",
-  # 提交代码
-  "commit": "bash pull-commit-push.sh"
-  },
+```json
+{
+  "scripts": {
+    // 启动开发服务器
+    "dev": "node server",
+    // 生产构建
+    "build": "run-p type-check \"build:client {@}\" \"build:server {@}\" --",
+    // 开发构建
+    "build:dev": "run-s \"build --mode development\"",
+    // 测试构建
+    "build:stage": "run-s \"build --mode staging\"",
+    "build:client": "vite build --ssrManifest --outDir dist/client",
+    "build:server": "vite build --ssr src/entry-server.ts --outDir dist/server",
+    "type-check": "vue-tsc --build --force",
+    // 预览（需在打包后执行）
+    "preview": "cross-env NODE_ENV=production node server",
+    // 语法校验
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+    // 风格校验
+    "format": "prettier --write src/",
+    "lint-staged": "lint-staged",
+    // 提交代码
+    "commit": "bash pull-commit-push.sh"
+  }
+}
 ```
-
-### ⚙️ 组合式 API 生命周期钩子
-
-| 生命周期钩子    | 服务端 (server) | 客户端 (client) | 说明                         |
-| --------------- | --------------- | --------------- | ---------------------------- |
-| setup           | ✅              | ✅              | 包含 beforeCreate 和 created |
-| onBeforeMount   | ❎              | ✅              | 组件挂载到 DOM 前            |
-| onMounted       | ❎              | ✅              | 组件挂载到 DOM 后            |
-| onBeforeUpdate  | ❎              | ✅              | 数据已更新，页面未更新       |
-| onUpdated       | ❎              | ✅              | 数据页面均更新               |
-| onActivated     | ❎              | ✅              | 组件激活时                   |
-| onDeactivated   | ❎              | ✅              | 组件失活时                   |
-| onBeforeUnmount | ❎              | ✅              | 组件卸载前                   |
-| onUnmounted     | ❎              | ✅              | 组件卸载后                   |
 
 ### ⚙️ 移动端和 PC 端适配
 
@@ -70,18 +58,18 @@ Node 版本：v18+
 
 `views/home/index.vue`
 
-```html
+```vue
 <script setup lang="ts">
-  import { useDevice } from "@/hooks/useDevice"
+import { useDevice } from "@/hooks/useDevice"
 
-  import DesktopFooter from "./modules/desktop.vue"
-  import MobileFooter from "./modules/mobile.vue"
+import DesktopFooter from "./modules/desktop.vue"
+import MobileFooter from "./modules/mobile.vue"
 
-  defineOptions({
-    name: "BaseFooter"
-  })
+defineOptions({
+  name: "BaseFooter"
+})
 
-  const { isMobile } = useDevice()
+const { isMobile } = useDevice()
 </script>
 
 <template>
@@ -91,18 +79,18 @@ Node 版本：v18+
 
 `views/home/modules/mobile.vue`
 
-```html
+```vue
 <script setup lang="ts">
-  defineOptions({
-    name: "HomeMobile"
-  })
+defineOptions({
+  name: "HomeMobile"
+})
 
-  interface Props {
-    adSense: WebConfig["adSense"]
-    imgUrl: string
-  }
+interface Props {
+  adSense: WebConfig["adSense"]
+  imgUrl: string
+}
 
-  defineProps<Props>()
+defineProps<Props>()
 </script>
 
 <template>
