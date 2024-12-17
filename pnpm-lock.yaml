@@ -67,7 +67,7 @@ importers:
         specifier: ^20.1.4
         version: 20.1.4
       '@types/node':
-        specifier: ^20.16.10
+        specifier: ^20.14.5
         version: 20.16.10
       '@types/qs':
         specifier: ^6.9.16

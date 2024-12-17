@@ -39,9 +39,29 @@ if (!isProduction) {
   app.use(base, sirv("./dist/client", { extensions: [] })) // 提供静态资源服务，服务路径为 './dist/client'
 }
 
+// 处理 ads.txt 请求
+app.get("/ads.txt", async (req, res) => {
+  try {
+    const originHost = req.headers.host.split(":")[0] || "localhost"
+    const host = originHost.replace(/^www\./, "")
+    let content
+    if (!isProduction) {
+      content = (await vite.ssrLoadModule("/src/web-configs.ts")).default[host].adSense.ads
+    } else {
+      content = (await import("../dist/server/entry-server.js")).getWebConfigs()[host].adSense.ads
+    }
+    res.type("text/plain").send(content)
+  } catch (e) {
+    console.log(e.stack) // 打印错误堆栈
+    res.status(500).end(e.stack) // 返回 500 错误，并输出堆栈信息
+  }
+})
+
 // 处理所有的 HTML 请求
 app.use("*", async (req, res) => {
   try {
+    const originHost = req.headers.host.split(":")[0] || "localhost"
+    const host = originHost.replace(/^www\./, "")
     const url = req.originalUrl.replace(base, "") // 获取请求的 URL，并去除基础路径
 
     let template
@@ -58,10 +78,11 @@ app.use("*", async (req, res) => {
     }
 
     // 调用服务端的 render 函数，生成流式内容和 Pinia 状态
-    const { stream, preloadLinks, headPayload } = await render(url, ssrManifest)
+    const { stream, preloadLinks, state, headPayload } = await render(url, host, ssrManifest, req)
 
     const [htmlStart, htmlEnd] = template
       .replace("<!--preload-links-->", preloadLinks)
+      .replace("<!--pinia-state-->", state)
       .replace("<!--headTags-->", headPayload.headTags)
       .split("<!--app-html-->") // 将模板分割为头部和尾部
 

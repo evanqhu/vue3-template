@@ -40,7 +40,10 @@ export default defineConfig(({ mode }) => {
       vueJsx(),
       // svg 雪碧图
       createSvgIconsPlugin({
-        iconDirs: [path.resolve(process.cwd(), "src/icons/svg")],
+        iconDirs: [
+          path.resolve(process.cwd(), "src/icons/svg"),
+          path.resolve(process.cwd(), "src/icons/logos")
+        ],
         symbolId: "icon-[dir]-[name]"
       }),
       // 图片打包压缩

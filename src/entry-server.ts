@@ -2,15 +2,33 @@
 import { basename } from "node:path"
 
 import { renderSSRHead } from "@unhead/ssr"
+import type { Request } from "express"
 import { renderToWebStream } from "vue/server-renderer"
 
+import { DeviceEnum } from "@/configs/constants"
 import { createApp } from "@/main"
+import { useAppStore } from "@/stores/modules/app"
+import webConfigs from "@/web-configs"
 
-export async function render(url: string, ssrManifest: string) {
+export async function render(url: string, host: string, ssrManifest: string, req: Request) {
   const manifest: Record<string, string[]> = ssrManifest && JSON.parse(ssrManifest) // 将字符串格式的 manifest 转换为对象
   // 根据请求的 host 获取对应的网站配置
+  const webConfig = webConfigs[host] || webConfigs.localhost
 
-  const { app, router, head } = await createApp("server")
+  const { app, store, router, head } = await createApp("server")
+
+  // 根据请求头判断设备类型并存储状态
+  const userAgent = req.headers["user-agent"] || "mobile"
+  const isMobile = /mobile|android|webos|iphone|ipod|blackberry/i.test(userAgent)
+  // NOTE 这里必须传入 store，否则会导致状态污染
+  const appStore = useAppStore(store)
+
+  // 服务端设置设备类型和网站配置，存储到 state 中
+  appStore.toggleDevice(isMobile ? DeviceEnum.Mobile : DeviceEnum.Desktop)
+  appStore.webConfig = webConfig
+
+  // 将状态序列化为 JSON 字符串
+  const state = JSON.stringify(store.state.value)
 
   await router.push(url)
   await router.isReady()
@@ -24,7 +42,7 @@ export async function render(url: string, ssrManifest: string) {
   // Vite 生成的 SSR manifest 包含模块到 chunk/资源的映射，之后我们可以利用它来确定此请求需要预加载哪些文件
   const preloadLinks = renderPreloadLinks(ctx.modules, manifest)
 
-  return { stream, preloadLinks, headPayload }
+  return { stream, preloadLinks, state, headPayload }
 }
 
 /** 服务端预加载文件 */
@@ -75,4 +93,9 @@ const renderPreloadLink = (file: string) => {
   } else {
     return ""
   }
+}
+
+/** 生产环境下暴露获取 webConfigs 的函数 */
+export function getWebConfigs() {
+  return webConfigs
 }
