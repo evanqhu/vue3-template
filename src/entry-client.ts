@@ -5,13 +5,7 @@ import "@/styles/main.scss"
 import { createApp } from "@/main"
 
 const initializeApp = async () => {
-  const { app, store, router } = await createApp("client")
-
-  // 将服务端渲染的初始状态注入到 store 中
-  if (window.__INITIAL_STATE__) {
-    const stateObj = JSON.parse(window.__INITIAL_STATE__)
-    store.state.value = stateObj
-  }
+  const { app, router } = await createApp("client")
 
   router.isReady().then(() => {
     app.mount("#app", true)
