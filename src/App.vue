@@ -29,11 +29,15 @@ useHead({
     }
   ],
   script: [
-    {
-      src: `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${webConfig.adSense?.client}`,
-      crossorigin: "anonymous",
-      async: true
-    }
+    ...(webConfig.adSense?.client
+      ? [
+          {
+            src: `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${webConfig.adSense.client}`,
+            crossorigin: "anonymous" as const,
+            async: true
+          }
+        ]
+      : [])
   ],
   link: [
     {

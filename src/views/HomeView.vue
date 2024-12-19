@@ -52,8 +52,8 @@ const {
       sunt!
     </div>
     <img v-lazy="imgURL" alt="" width="100%" />
-    <AdsbyGoogle :ads-attrs="adSense.home_1" />
-    <AdsbyGoogle :ads-attrs="adSense.home_2" />
+    <AdsbyGoogle :ads-attrs="adSense?.home_1" />
+    <AdsbyGoogle :ads-attrs="adSense?.home_2" />
   </div>
 </template>
 

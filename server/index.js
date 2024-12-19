@@ -46,9 +46,9 @@ app.get("/ads.txt", async (req, res) => {
     const host = originHost.replace(/^www\./, "")
     let content
     if (!isProduction) {
-      content = (await vite.ssrLoadModule("/src/web-configs.ts")).default[host].adSense.ads
+      content = (await vite.ssrLoadModule("/src/web-configs.ts")).default[host]?.adSense?.ads
     } else {
-      content = (await import("../dist/server/entry-server.js")).getWebConfigs()[host].adSense.ads
+      content = (await import("../dist/server/entry-server.js")).getWebConfigs()[host]?.adSense?.ads
     }
     res.type("text/plain").send(content)
   } catch (e) {
