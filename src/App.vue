@@ -42,7 +42,7 @@ useHead({
   link: [
     {
       rel: "icon",
-      href: iconUrl.value
+      href: iconUrl
     }
   ],
   bodyAttrs: {
