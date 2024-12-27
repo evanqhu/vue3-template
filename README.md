@@ -343,6 +343,157 @@ provide($eventTrack, customEventTrack)
 
 在 `url` 后面增加 `db` `query`参数即可，如 `www.xxx.com?db=1`，表示开启 debug 模式
 
+### ⚙️ head 上报
+
+在 `server.index.ts` 中添加配置
+
+```js
+app.use("*", async (req, res) => {
+  try {
+    const originHost = req.headers.host.split(":")[0] || "localhost"
+    const host = originHost.replace(/^www\./, "")
+    const url = req.originalUrl.replace(base, "") // 获取请求的 URL，并去除基础路径
+
+    // header 上报
+    if (!url.includes(".")) {
+      const data = {
+        dt: new Date().toISOString().split("T")[0], // 当前日期，格式为 YYYY-MM-DD
+        host: host,
+        path: url,
+        timestamp: Date.now(),
+        ...req.headers
+      }
+      // 异步地发送 POST 请求到后端的 /abc 接口
+      axios.post("http://data-tr.videodownloader.software/web/report", data)
+        .catch((error) => {
+        // 处理错误，但不影响后续的渲染
+        console.error("Error sending data to /abc:", error)
+      })
+    }
+    ...
+  } catch (e) {
+    ...
+  }
+})
+```
+
+### ⚙️ 路由 channel 配置
+
+需求：
+
+1. 访问 `/channelX` 和访问 `/` 相同；访问 `/channelX/detail` 和访问 `/detail` 相同，在访问 `/channelX` 时，点击详情页直接跳转 `/channelX/detail` (X 取值 1～99)
+2. 路由跳转的时候，query 参数始终跟随
+
+自定义 `push` 方法 `useCustomRouter.ts`
+
+```js
+import { useRouter } from "vue-router"
+
+export const useCustomRouter = () => {
+  const router = useRouter()
+  const { params, query } = router.currentRoute.value
+  const { channel } = params
+  const queryString = new URLSearchParams(query as Record<string, string>).toString()
+
+  const fullChannel = channel ? `/${channel}` : ""
+  const fullQueryString = queryString ? `?${queryString}` : ""
+
+  const customPush = (path: string) => {
+    router.push(`${fullChannel}${path}${fullQueryString}`)
+  }
+
+  return customPush
+}
+```
+
+路由配置
+
+```js
+export const createRouter = () => {
+  createVueRouter({
+    routes: [
+      {
+        path: "/",
+        component: Layout,
+        children: [
+          {
+            name: "Home",
+            path: "",
+            component: () => import("@/views/home/index.vue")
+          }
+        ]
+      },
+      {
+        path: "/:channel(channel[1-9]\\d?)",
+        component: Layout,
+        children: [
+          {
+            name: "HomeChannel",
+            path: "",
+            component: () => import("@/views/home/index.vue")
+          }
+        ]
+      },
+      {
+        path: "/:coinName",
+        component: Layout,
+        children: [
+          {
+            name: "Detail",
+            path: "",
+            component: () => import("@/views/detail/index.vue")
+          }
+        ]
+      },
+      {
+        path: "/:channel(channel[1-9]\\d?)/:coinName",
+        component: Layout,
+        children: [
+          {
+            name: "DetailChannel",
+            path: "",
+            component: () => import("@/views/detail/index.vue")
+          }
+        ]
+      }
+    ]
+  })
+}
+```
+
+如果不存在根路径下的动态路由，可以使用下面的方法，配置更简单
+
+```js
+export const createRouter = () => {
+  createVueRouter({
+    routes: [
+      {
+        path: "/:channel(channel[1-9]\\d?)?",
+        component: Layout,
+        children: [
+          {
+            name: "daily",
+            path: "",
+            component: () => import("@/views/Home/daily.vue")
+          },
+          {
+            name: "weekly",
+            path: "weekly-horoscope",
+            component: () => import("@/views/Home/weekly.vue")
+          },
+          ...horoscopeRoutes
+        ]
+      },
+      {
+        path: "/terms-of-service",
+        name: "Terms of service",
+        component: () => import("@/views/TermsOfService/index.vue")
+      }
+    ]
+  })
+}
+```
+
 ### ⚙️ 项目部署
 
 项目部署到服务器上时，告知运运维打包命令：`pnpm run build`
