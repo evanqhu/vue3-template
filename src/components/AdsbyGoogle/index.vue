@@ -144,6 +144,7 @@ onBeforeUnmount(() => {
   width: 100%;
   font-weight: 400;
   font-size: 16px;
+  overflow: hidden;
 }
 
 .ads-content {
