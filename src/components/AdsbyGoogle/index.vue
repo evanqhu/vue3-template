@@ -126,7 +126,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div v-if="isShowAd" class="ads-item">
+  <div v-if="isShowAd" class="ads-item" data-allow-mismatch>
     <div v-show="isAdFilled" class="ads-content" :class="customClass">
       <div class="ads-content-title">Advertisement</div>
       <ins ref="adsense-ref" v-bind="adsAttrsFull" />
