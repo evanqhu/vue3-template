@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useHead } from "@unhead/vue"
+import { useHead, useSeoMeta } from "@unhead/vue"
 import { onMounted, provide, ref } from "vue"
 
 import { $eventTrack, $logEvent } from "@/configs/constants"
@@ -20,34 +20,31 @@ provide($eventTrack, customEventTrack)
 const iconUrl = ref("")
 
 // 设置页面标题，加载广告脚本
-useHead({
+useHead(
+  {
+    script: [
+      ...(webConfig.adSense?.client
+        ? [
+            {
+              src: `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${webConfig.adSense.client}`,
+              crossorigin: "anonymous" as const,
+              async: true
+            }
+          ]
+        : [])
+    ],
+    link: [
+      {
+        rel: "icon",
+        href: iconUrl
+      }
+    ]
+  },
+  { mode: "client" }
+)
+useSeoMeta({
   title: webConfig.appTitle,
-  meta: [
-    {
-      name: "og:title",
-      content: webConfig.appTitle
-    }
-  ],
-  script: [
-    ...(webConfig.adSense?.client
-      ? [
-          {
-            src: `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${webConfig.adSense.client}`,
-            crossorigin: "anonymous" as const,
-            async: true
-          }
-        ]
-      : [])
-  ],
-  link: [
-    {
-      rel: "icon",
-      href: iconUrl
-    }
-  ],
-  bodyAttrs: {
-    class: webConfig.bodyStyleName || ""
-  }
+  ogTitle: webConfig.appTitle
 })
 
 // 动态引入 icon
