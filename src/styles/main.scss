@@ -1,7 +1,7 @@
 // 主样式文件
-@import "./reset.scss";
-@import "./fonts.scss";
-@import "./common.scss";
+@use "./reset.scss" as *;
+@use "./fonts.scss" as *;
+@use "./common.scss" as *;
 
 *,
 *::before,

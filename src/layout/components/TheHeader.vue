@@ -41,7 +41,7 @@ const handleMenuClick = () => {
   padding: 0 1rem;
   background: #fff;
   box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.08);
-  z-index: 1000;
+  z-index: 2001;
 
   @media (min-width: $container-width) {
     padding: 0 calc((100% - $container-width) / 2);

@@ -52,13 +52,13 @@ watch(
   top: $header-height;
   bottom: 0;
   position: fixed;
-  z-index: 999;
+  z-index: 2001;
 }
 
 .menu-drawer {
   position: fixed;
   top: $header-height;
-  z-index: 999;
+  z-index: 2001;
   width: 100%;
   background: #fff;
   transition: all 0.2s ease-in-out;

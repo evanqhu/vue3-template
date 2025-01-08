@@ -30,7 +30,7 @@ export default defineConfig(({ mode }) => {
       },
       preprocessorOptions: {
         scss: {
-          additionalData: `@import "@/styles/variables.scss";` // 全局注入样式文件，包含全局样式变量和函数
+          additionalData: `@use "@/styles/variables.scss" as *;` // 全局注入样式文件，包含全局样式变量和函数
         }
       }
     },
