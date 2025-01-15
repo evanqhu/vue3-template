@@ -5,6 +5,7 @@ declare global {
   interface Window {
     __INITIAL_STATE__: string
     adsbygoogle: any
+    JSCallAndroid: any
   }
 
   type WebConfig = ConfigType

@@ -3,11 +3,13 @@ import { useHead, useSeoMeta } from "@unhead/vue"
 import { onMounted, provide, ref } from "vue"
 
 import { $eventTrack, $logEvent } from "@/configs/constants"
+import { useAdsClickListener } from "@/hooks/useAdsClickListener"
 import { useFirebase } from "@/hooks/useFirebase"
 import { useResize } from "@/hooks/useResize"
 import { useAppStore } from "@/stores/modules/app"
 
 useResize()
+useAdsClickListener()
 const appStore = useAppStore()
 const { webConfig } = appStore
 
