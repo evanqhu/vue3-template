@@ -9,7 +9,7 @@ import { useResize } from "@/hooks/useResize"
 import { useAppStore } from "@/stores/modules/app"
 
 useResize()
-useAdsClickListener()
+
 const appStore = useAppStore()
 const { webConfig } = appStore
 
@@ -17,6 +17,7 @@ const { webConfig } = appStore
 const { customLogEvent, customEventTrack } = useFirebase()
 provide($logEvent, customLogEvent)
 provide($eventTrack, customEventTrack)
+useAdsClickListener(customEventTrack)
 
 /** 网站图标 */
 const iconUrl = ref("")

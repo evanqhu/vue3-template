@@ -1,12 +1,9 @@
 /** 监听广告点击 */
-import { inject, onMounted } from "vue"
+import { onMounted } from "vue"
 
-import { $eventTrack, type eventTrackType } from "@/configs/constants"
+import { type eventTrackType } from "@/configs/constants"
 
-export const useAdsClickListener = () => {
-  /** firebase 的函数 */
-  const eventTrack = inject($eventTrack) as eventTrackType
-
+export const useAdsClickListener = (eventTrack: eventTrackType) => {
   let isTrackingSetup = false // 是否已经设置监听
   let intervalTimer: NodeJS.Timeout | undefined // 定时器
   const iframeObjList: any[] = [] // iframe 对象列表
