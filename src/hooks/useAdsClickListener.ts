@@ -57,7 +57,7 @@ export const useAdsClickListener = () => {
             }
 
             // 1. JSCallAndroid 调用
-            if (window.JSCallAndroid && typeof window.JSCallAndroid === "function") {
+            if (window.JSCallAndroid && typeof window.JSCallAndroid.adClick === "function") {
               window.JSCallAndroid.adClick(JSON.stringify(transformData))
             } else {
               console.log("🚀🚀🚀 transformData: ", transformData)
